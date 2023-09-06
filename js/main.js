@@ -1,76 +1,83 @@
-/* global function */
-import { initUtils } from "./utils.js";
+/* global KEEP */
 
-document.addEventListener("DOMContentLoaded", () => {
-  Global.themeInfo = {
-    theme: `Redefine v${Global.theme_config.version}`,
-    author: "EvanNotFound",
-    repository: "https://github.com/EvanNotFound/hexo-theme-redefine",
-  };
+window.addEventListener('DOMContentLoaded', () => {
+  const { version, local_search, code_block, code_copy, lazyload } = KEEP.theme_config
 
-  Global.localStorageKey = "REDEFINE-THEME-STATUS";
+  KEEP.themeInfo = {
+    theme: `Keep v${version}`,
+    author: 'XPoet',
+    repository: 'https://github.com/XPoet/hexo-theme-keep'
+  }
 
-  Global.styleStatus = {
+  KEEP.localStorageKey = 'KEEP-THEME-STATUS'
+
+  KEEP.styleStatus = {
     isExpandPageWidth: false,
     isDark: false,
     fontSizeLevel: 0,
-    isOpenPageAside: true,
-  };
+    isShowToc: true
+  }
 
   // print theme base info
-  Global.printThemeInfo = () => {
+  KEEP.printThemeInfo = () => {
     console.log(
-      `      ______ __  __  ______  __    __  ______                       \r\n     \/\\__  _\/\\ \\_\\ \\\/\\  ___\\\/\\ \"-.\/  \\\/\\  ___\\                      \r\n     \\\/_\/\\ \\\\ \\  __ \\ \\  __\\\\ \\ \\-.\/\\ \\ \\  __\\                      \r\n        \\ \\_\\\\ \\_\\ \\_\\ \\_____\\ \\_\\ \\ \\_\\ \\_____\\                    \r\n         \\\/_\/ \\\/_\/\\\/_\/\\\/_____\/\\\/_\/  \\\/_\/\\\/_____\/                    \r\n                                                               \r\n ______  ______  _____   ______  ______ __  __   __  ______    \r\n\/\\  == \\\/\\  ___\\\/\\  __-.\/\\  ___\\\/\\  ___\/\\ \\\/\\ \"-.\\ \\\/\\  ___\\   \r\n\\ \\  __<\\ \\  __\\\\ \\ \\\/\\ \\ \\  __\\\\ \\  __\\ \\ \\ \\ \\-.  \\ \\  __\\   \r\n \\ \\_\\ \\_\\ \\_____\\ \\____-\\ \\_____\\ \\_\\  \\ \\_\\ \\_\\\\\"\\_\\ \\_____\\ \r\n  \\\/_\/ \/_\/\\\/_____\/\\\/____\/ \\\/_____\/\\\/_\/   \\\/_\/\\\/_\/ \\\/_\/\\\/_____\/\r\n                                                               \r\n  Github: https:\/\/github.com\/EvanNotFound\/hexo-theme-redefine`,
-    );
-  };
+      `\n %c ${KEEP.themeInfo.theme} %c ${KEEP.themeInfo.repository} \n`,
+      `color: #fadfa3; background: #333; padding: 6px 0;`,
+      `padding: 6px 0;`
+    )
+  }
+
+  // set version number of footer
+  KEEP.setFooterVersion = () => {
+    const vd = document.querySelector('.footer .keep-version')
+    vd && (vd.innerHTML = KEEP.themeInfo.theme)
+    const vd2 = document.querySelector('.footer .shields-keep-version')
+    vd2 && (vd2.src = vd2.src.replace('Keep', KEEP.themeInfo.theme))
+  }
 
   // set styleStatus to localStorage
-  Global.setStyleStatus = () => {
-    localStorage.setItem(
-      Global.localStorageKey,
-      JSON.stringify(Global.styleStatus),
-    );
-  };
+  KEEP.setStyleStatus = () => {
+    localStorage.setItem(KEEP.localStorageKey, JSON.stringify(KEEP.styleStatus))
+  }
 
   // get styleStatus from localStorage
-  Global.getStyleStatus = () => {
-    let temp = localStorage.getItem(Global.localStorageKey);
+  KEEP.getStyleStatus = () => {
+    let temp = localStorage.getItem(KEEP.localStorageKey)
     if (temp) {
-      temp = JSON.parse(temp);
-      for (let key in Global.styleStatus) {
-        Global.styleStatus[key] = temp[key];
+      temp = JSON.parse(temp)
+      for (let key in KEEP.styleStatus) {
+        KEEP.styleStatus[key] = temp[key]
       }
-      return temp;
+      return temp
     } else {
-      return null;
+      return null
     }
-  };
+  }
 
-  Global.refresh = () => {
-    initUtils();
+  KEEP.refresh = () => {
+    KEEP.initUtils()
+    KEEP.initHeaderShrink()
+    KEEP.initModeToggle()
+    KEEP.initBack2Top()
+    KEEP.setFooterVersion()
 
-    Global.initModeToggle();
-    Global.initBackToTop();
+    if (local_search?.enable === true) {
+      KEEP.initLocalSearch()
+    }
+
     if (
-      Global.theme_config.home_banner.subtitle.text.length !== 0 &&
-      location.pathname === Global.hexo_config.root
+      code_block?.tools?.enable === true ||
+      code_block?.enable === true ||
+      code_copy?.enable === true
     ) {
-      Global.initTyped("subtitle");
+      KEEP.initCodeBlockTools()
     }
 
-    if (Global.theme_config.navbar.search.enable === true) {
-      Global.initLocalSearch();
+    if (lazyload?.enable === true) {
+      KEEP.initLazyLoad()
     }
+  }
 
-    if (Global.theme_config.articles.code_block.copy === true) {
-      Global.initCopyCode();
-    }
-
-    if (Global.theme_config.articles.lazyload === true) {
-      Global.initLazyLoad();
-    }
-  };
-
-  Global.printThemeInfo();
-  Global.refresh();
-});
+  KEEP.printThemeInfo()
+  KEEP.refresh()
+})

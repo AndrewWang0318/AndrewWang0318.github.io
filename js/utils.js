@@ -1,612 +1,503 @@
-/* global function */
+/* global KEEP */
 
-import { initMasonry } from "./plugins/masonry.js";
-import { navbarShrink } from "./layouts/navbarShrink.js";
-
-export function initUtils() {
-  Global.utils = {
-    html_root_dom: document.querySelector("html"),
-    pageContainer_dom: document.querySelector(".page-container"),
-    pageTop_dom: document.querySelector(".main-content-header"),
-    homeBanner_dom: document.querySelector(".home-banner-container"),
-    scrollProgressBar_dom: document.querySelector(".scroll-progress-bar"),
-    pjaxProgressBar_dom: document.querySelector(".pjax-progress-bar"),
-    pjaxProgressIcon_dom: document.querySelector(".swup-progress-icon"),
-    backToTopButton_dom: document.querySelector(".tool-scroll-to-top"),
-    toolsList: document.querySelector(".hidden-tools-list"),
-    toggleButton: document.querySelector(".toggle-tools-list"),
+KEEP.initUtils = () => {
+  KEEP.utils = {
+    rootHtmlDom: document.querySelector('html'),
+    pageTopDom: document.querySelector('.page-main-content-top'),
+    scrollProgressBarDom: document.querySelector('.scroll-progress-bar'),
+    pjaxProgressBarDom: document.querySelector('.pjax-progress-bar'),
+    pjaxProgressIcon: document.querySelector('.pjax-progress-icon'),
+    back2TopBtn: document.querySelector('.tool-scroll-to-top'),
+    headerWrapperDom: document.querySelector('.header-wrapper'),
 
     innerHeight: window.innerHeight,
     pjaxProgressBarTimer: null,
     prevScrollValue: 0,
     fontSizeLevel: 0,
+    isHasScrollProgressBar: false,
+    isHasScrollPercent: false,
+    isHeaderTransparent: false,
+    hasToc: false,
 
-    isHasScrollProgressBar:
-      Global.theme_config.global.scroll_progress.bar === true,
-    isHasScrollPercent:
-      Global.theme_config.global.scroll_progress.percentage === true,
-
-    // Scroll Style
-    updateScrollStyle() {
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight;
-      const clientHeight =
-        window.innerHeight || document.documentElement.clientHeight;
-      const percent = this.calculatePercentage(
-        scrollTop,
-        scrollHeight,
-        clientHeight,
-      );
-
-      this.updateScrollProgressBar(percent);
-      this.updateScrollPercent(percent);
-      this.updatePageTopVisibility(scrollTop, clientHeight);
-
-      this.prevScrollValue = scrollTop;
-    },
-
-    updateScrollProgressBar(percent) {
-      if (this.isHasScrollProgressBar) {
-        const progressPercent = percent.toFixed(3);
-        const visibility = percent === 0 ? "hidden" : "visible";
-
-        this.scrollProgressBar_dom.style.visibility = visibility;
-        this.scrollProgressBar_dom.style.width = `${progressPercent}%`;
+    initData() {
+      const { scroll, first_screen } = KEEP.theme_config?.style || {}
+      this.isHasScrollProgressBar = scroll?.progress_bar === true
+      this.isHasScrollPercent = scroll?.percent === true
+      const { enable, header_transparent } = first_screen || {}
+      this.isHeaderTransparent =
+        enable === true &&
+        header_transparent === true &&
+        !window.location.pathname.includes('/page/')
+      if (!this.isHeaderTransparent) {
+        this.headerWrapperDom.classList.remove('transparent-1', 'transparent-2')
       }
     },
 
-    updateScrollPercent(percent) {
-      if (this.isHasScrollPercent) {
-        const percentDom = this.backToTopButton_dom.querySelector(".percent");
-        const showButton = percent !== 0 && percent !== undefined;
+    // Scroll Style Handle
+    styleHandleWhenScroll() {
+      const scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+      const scrollHeight = document.body.scrollHeight || document.documentElement.scrollHeight
+      const clientHeight = window.innerHeight || document.documentElement.clientHeight
 
-        this.backToTopButton_dom.classList.toggle("show", showButton);
-        percentDom.innerHTML = percent.toFixed(0);
+      const percent = Math.round((scrollTop / (scrollHeight - clientHeight)) * 100) || 0
+
+      if (this.isHasScrollProgressBar && this.scrollProgressBarDom) {
+        const progressPercent = ((scrollTop / (scrollHeight - clientHeight)) * 100).toFixed(3)
+        this.scrollProgressBarDom.style.visibility = percent === 0 ? 'hidden' : 'visible'
+        this.scrollProgressBarDom.style.width = `${progressPercent}%`
       }
-    },
 
-    updatePageTopVisibility(scrollTop, clientHeight) {
-      if (Global.theme_config.navbar.auto_hide) {
-        const prevScrollValue = this.prevScrollValue;
-        const hidePageTop =
-          prevScrollValue > clientHeight && scrollTop > prevScrollValue;
+      if (this.isHasScrollPercent && this.back2TopBtn) {
+        const percentDom = this.back2TopBtn.querySelector('.percent')
+        if (percent === 0 || percent === undefined) {
+          this.back2TopBtn.classList.remove('show')
+        } else {
+          this.back2TopBtn.classList.add('show')
+          percentDom.innerHTML = percent.toFixed(0)
+        }
+      }
 
-        this.pageTop_dom.classList.toggle("hide", hidePageTop);
+      // hide header handle
+      if (scrollTop > this.prevScrollValue && scrollTop > this.innerHeight) {
+        this.pageTopDom.classList.add('hide')
+        if (this.isHeaderTransparent) {
+          this.headerWrapperDom.classList.remove('transparent-1', 'transparent-2')
+        }
       } else {
-        this.pageTop_dom.classList.remove("hide");
+        this.pageTopDom.classList.remove('hide')
+        if (this.isHeaderTransparent) {
+          if (scrollTop <= this.headerWrapperDom.getBoundingClientRect().height) {
+            this.headerWrapperDom.classList.remove('transparent-2')
+            this.headerWrapperDom.classList.add('transparent-1')
+          } else if (scrollTop < this.innerHeight) {
+            this.headerWrapperDom.classList.add('transparent-2')
+          }
+        }
       }
-    },
-
-    calculatePercentage(scrollTop, scrollHeight, clientHeight) {
-      return Math.round((scrollTop / (scrollHeight - clientHeight)) * 100);
+      this.prevScrollValue = scrollTop
     },
 
     // register window scroll event
     registerWindowScroll() {
-      window.addEventListener("scroll", () => {
-        this.updateScrollStyle();
-        this.updateTOCScroll();
-        this.updateNavbarShrink();
-        this.updateHomeBannerBlur();
-        this.updateAutoHideTools();
-        this.updateAPlayerAutoHide();
-      });
-    },
+      window.addEventListener('scroll', () => {
+        // style handle when scroll
+        this.styleHandleWhenScroll()
 
-    updateTOCScroll() {
-      if (
-        Global.theme_config.articles.toc.enable &&
-        Global.utils.hasOwnProperty("updateActiveTOCLink")
-      ) {
-        Global.utils.updateActiveTOCLink();
-      }
-    },
-
-    updateNavbarShrink() {
-      navbarShrink.init();
-    },
-
-    updateHomeBannerBlur() {
-      if (
-        Global.theme_config.home_banner.style === "fixed" &&
-        location.pathname === Global.hexo_config.root
-      ) {
-        const blurElement = document.querySelector(".home-banner-background");
-        const viewHeight = window.innerHeight;
-        const scrollY = window.scrollY || window.pageYOffset;
-        const triggerViewHeight = viewHeight / 2;
-        const blurValue = scrollY >= triggerViewHeight ? 15 : 0;
-
-        try {
-          blurElement.style.transition = "0.3s";
-          blurElement.style.webkitFilter = `blur(${blurValue}px)`;
-        } catch (e) {}
-      }
-    },
-
-    updateAutoHideTools() {
-      const y = window.pageYOffset;
-      const height = document.body.scrollHeight;
-      const windowHeight = window.innerHeight;
-      const toolList = document.getElementsByClassName(
-        "right-side-tools-container",
-      );
-
-      for (let i = 0; i < toolList.length; i++) {
-        const tools = toolList[i];
-        if (y <= 0) {
-          if (location.pathname !== "/") {
-            //console.log(location.pathname)
-          } else {
-            tools.classList.add("hide");
-          }
-        } else if (y + windowHeight >= height - 20) {
-          tools.classList.add("hide");
-        } else {
-          tools.classList.remove("hide");
+        // TOC scroll handle
+        if (KEEP.theme_config.toc.enable === true && KEEP.utils.hasOwnProperty('activeNav')) {
+          KEEP.utils.activeNav()
         }
-      }
+
+        // header shrink
+        KEEP.utils.headerShrink.headerShrink()
+      })
     },
 
-    updateAPlayerAutoHide() {
-      const aplayer = document.getElementById("aplayer");
-      if (aplayer == null) {
-      } else {
-        const y = window.pageYOffset;
-        const height = document.body.scrollHeight;
-        const windowHeight = window.innerHeight;
-        if (y <= 0) {
-          if (location.pathname !== "/") {
-            //console.log(location.pathname)
-          } else {
-            aplayer.classList.add("hide");
-          }
-        } else if (y + windowHeight >= height - 20) {
-          aplayer.classList.add("hide");
-        } else {
-          aplayer.classList.remove("hide");
-        }
-      }
+    // toggle show tools list
+    toggleShowToolsList() {
+      const sideToolsListDom = document.querySelector('.side-tools-list')
+      const toggleShowToolsDom = document.querySelector('.tool-toggle-show')
+      toggleShowToolsDom.addEventListener('click', (e) => {
+        sideToolsListDom.classList.toggle('show')
+        e.stopPropagation()
+      })
+      sideToolsListDom.querySelectorAll('.tools-item').forEach((item) => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation()
+        })
+      })
+      document.addEventListener('click', () => {
+        sideToolsListDom.classList.contains('show') && sideToolsListDom.classList.remove('show')
+      })
     },
 
-    toggleToolsList() {
-      this.toggleButton.addEventListener("click", () => {
-        this.toolsList.classList.toggle("show");
-      });
-    },
+    // global font adjust
+    globalFontAdjust() {
+      const fontSize = document.defaultView.getComputedStyle(document.body).fontSize
+      const fs = parseFloat(fontSize)
 
-    globalFontSizeAdjust() {
-      const htmlRoot = this.html_root_dom;
-      const fontAdjustPlus = document.querySelector(".tool-font-adjust-plus");
-      const fontAdjustMinus = document.querySelector(".tool-font-adjust-minus");
-
-      const fontSize = document.defaultView.getComputedStyle(
-        document.body,
-      ).fontSize;
-      const baseFontSize = parseFloat(fontSize);
-
-      let fontSizeLevel = 0;
-      const styleStatus = Global.getStyleStatus();
-      if (styleStatus) {
-        fontSizeLevel = styleStatus.fontSizeLevel;
-        setFontSize(fontSizeLevel);
-      }
-
-      function setFontSize(level) {
-        const fontSize = baseFontSize * (1 + level * 0.05);
-        htmlRoot.style.fontSize = `${fontSize}px`;
-        Global.styleStatus.fontSizeLevel = level;
-        Global.setStyleStatus();
-      }
-
-      function increaseFontSize() {
-        fontSizeLevel = Math.min(fontSizeLevel + 1, 5);
-        setFontSize(fontSizeLevel);
-      }
-
-      function decreaseFontSize() {
-        fontSizeLevel = Math.max(fontSizeLevel - 1, 0);
-        setFontSize(fontSizeLevel);
-      }
-
-      fontAdjustPlus.addEventListener("click", increaseFontSize);
-      fontAdjustMinus.addEventListener("click", decreaseFontSize);
-    },
-
-    // toggle content area width
-    contentAreaWidthAdjust() {
-      const toolExpandDom = document.querySelector(".tool-expand-width");
-      const navbarContentDom = document.querySelector(".navbar-content");
-      const mainContentDom = document.querySelector(".main-content");
-      const iconDom = toolExpandDom.querySelector("i");
-
-      const defaultMaxWidth =
-        Global.theme_config.global.content_max_width || "1000px";
-      const expandMaxWidth = "90%";
-      let navbarMaxWidth = defaultMaxWidth;
-
-      let isExpand = false;
-
-      if (
-        Global.theme_config.home_banner.enable === true &&
-        window.location.pathname === "/"
-      ) {
-        navbarMaxWidth = parseInt(defaultMaxWidth) * 1.2 + "px";
-      }
-
-      const setPageWidth = (isExpand) => {
-        Global.styleStatus.isExpandPageWidth = isExpand;
-        Global.setStyleStatus();
-        if (isExpand) {
-          iconDom.classList.remove("fa-expand");
-          iconDom.classList.add("fa-compress");
-          navbarContentDom.style.maxWidth = expandMaxWidth;
-          mainContentDom.style.maxWidth = expandMaxWidth;
-        } else {
-          iconDom.classList.remove("fa-compress");
-          iconDom.classList.add("fa-expand");
-          navbarContentDom.style.maxWidth = navbarMaxWidth;
-          mainContentDom.style.maxWidth = defaultMaxWidth;
-        }
-      };
-
-      const initPageWidth = () => {
-        const styleStatus = Global.getStyleStatus();
+      const initFontSize = () => {
+        const styleStatus = KEEP.getStyleStatus()
         if (styleStatus) {
-          isExpand = styleStatus.isExpandPageWidth;
-          setPageWidth(isExpand);
+          this.fontSizeLevel = styleStatus.fontSizeLevel
+          setFontSize(this.fontSizeLevel)
         }
-      };
+      }
 
-      initPageWidth();
+      const setFontSize = (fontSizeLevel) => {
+        this.rootHtmlDom.style.fontSize = `${fs * (1 + fontSizeLevel * 0.05)}px`
+        KEEP.styleStatus.fontSizeLevel = fontSizeLevel
+        KEEP.setStyleStatus()
+      }
 
-      toolExpandDom.addEventListener("click", () => {
-        isExpand = !isExpand;
-        setPageWidth(isExpand);
+      initFontSize()
 
-        var loadingPlaceholder = document.querySelector(".loading-placeholder");
-        var masonryContainer = document.querySelector("#masonry-container");
-        if (!loadingPlaceholder || !masonryContainer) return;
+      document.querySelector('.tool-font-adjust-plus').addEventListener('click', () => {
+        if (this.fontSizeLevel === 5) return
+        this.fontSizeLevel++
+        setFontSize(this.fontSizeLevel)
+      })
 
-        loadingPlaceholder.style.opacity = 1;
-        loadingPlaceholder.style.display = "block";
-        masonryContainer.style.display = "none";
-
-        setTimeout(() => {
-          initMasonry();
-        }, 300);
-      });
+      document.querySelector('.tool-font-adjust-minus').addEventListener('click', () => {
+        if (this.fontSizeLevel <= 0) return
+        this.fontSizeLevel--
+        setFontSize(this.fontSizeLevel)
+      })
     },
 
-    // go comment anchor
-    goComment() {
-      this.goComment_dom = document.querySelector(".go-comment");
-      if (this.goComment_dom) {
-        this.goComment_dom.addEventListener("click", () => {
-          const target = document.querySelector("#comment-anchor");
-          if (target) {
-            const offset = target.getBoundingClientRect().top + window.scrollY;
-            window.scrollTo({
-              top: offset,
-              behavior: "smooth",
-            });
+    // init has TOC
+    initHasToc() {
+      const tocNavDoms = document.querySelectorAll('.post-toc-wrap .post-toc li')
+      if (tocNavDoms.length > 0) {
+        this.hasToc = true
+        document.body.classList.add('has-toc')
+      } else {
+        this.hasToc = false
+        document.body.classList.remove('has-toc')
+      }
+    },
+
+    // zoom in image
+    zoomInImage() {
+      let SIDE_GAP = 40
+      let isZoomIn = false
+      let curWinScrollY = 0
+      let selectedImgDom = null
+      const imgDomList = document.querySelectorAll('.keep-markdown-body img')
+      const zoomInImgMask = document.querySelector('.zoom-in-image-mask')
+      const zoomInImg = zoomInImgMask?.querySelector('.zoom-in-image')
+
+      const zoomOut = () => {
+        if (isZoomIn) {
+          isZoomIn = false
+          curWinScrollY = 0
+          zoomInImg && (zoomInImg.style.transform = `scale(1)`)
+          zoomInImgMask && zoomInImgMask.classList.remove('show')
+          setTimeout(() => {
+            selectedImgDom && selectedImgDom.classList.remove('hide')
+          }, 300)
+        }
+      }
+
+      const zoomOutHandle = () => {
+        zoomInImgMask &&
+          zoomInImgMask.addEventListener('click', () => {
+            zoomOut()
+          })
+
+        document.addEventListener('scroll', () => {
+          if (isZoomIn && Math.abs(curWinScrollY - window.scrollY) >= 50) {
+            zoomOut()
           }
-        });
+        })
       }
-    },
 
-    // get dom element height
-    getElementHeight(selectors) {
-      const dom = document.querySelector(selectors);
-      return dom ? dom.getBoundingClientRect().height : 0;
-    },
-
-    // init first screen height
-    inithomeBannerHeight() {
-      this.homeBanner_dom &&
-        (this.homeBanner_dom.style.height = this.innerHeight + "px");
-    },
-
-    // init page height handle
-    initPageHeightHandle() {
-      if (this.homeBanner_dom) return;
-      const temp_h1 = this.getElementHeight(".main-content-header");
-      const temp_h2 = this.getElementHeight(".main-content-body");
-      const temp_h3 = this.getElementHeight(".main-content-footer");
-      const allDomHeight = temp_h1 + temp_h2 + temp_h3;
-      const innerHeight = window.innerHeight;
-      const pb_dom = document.querySelector(".main-content-footer");
-      if (allDomHeight < innerHeight) {
-        const marginTopValue = Math.floor(innerHeight - allDomHeight);
-        if (marginTopValue > 0) {
-          pb_dom.style.marginTop = `${marginTopValue - 2}px`;
-        }
-      }
-    },
-
-    // big image viewer
-    imageViewer() {
-      let isBigImage = false;
-      let scale = 1;
-      let isMouseDown = false;
-      let lastMouseX = 0;
-      let lastMouseY = 0;
-      let translateX = 0;
-      let translateY = 0;
-
-      const maskDom = document.querySelector(".image-viewer-container");
-      const targetImg = maskDom.querySelector("img");
-
-      const showHandle = (isShow) => {
-        document.body.style.overflow = isShow ? "hidden" : "auto";
-        isShow
-          ? maskDom.classList.add("active")
-          : maskDom.classList.remove("active");
-      };
-
-      const zoomHandle = (event) => {
-        event.preventDefault();
-        const rect = targetImg.getBoundingClientRect();
-        const offsetX = event.clientX - rect.left;
-        const offsetY = event.clientY - rect.top;
-        const dx = offsetX - rect.width / 2;
-        const dy = offsetY - rect.height / 2;
-        const oldScale = scale;
-        scale += event.deltaY * -0.001;
-        scale = Math.min(Math.max(0.8, scale), 4);
-
-        if (oldScale < scale) {
-          // Zooming in
-          translateX -= dx * (scale - oldScale);
-          translateY -= dy * (scale - oldScale);
+      const setSideGap = () => {
+        const w = document.body.offsetWidth
+        if (w <= 500) {
+          SIDE_GAP = 10
+        } else if (w <= 800) {
+          SIDE_GAP = 20
         } else {
-          // Zooming out
-          translateX = 0;
-          translateY = 0;
+          SIDE_GAP = 40
         }
+      }
 
-        targetImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-      };
+      if (imgDomList.length) {
+        zoomOutHandle()
+        imgDomList.forEach((img) => {
+          img.addEventListener('click', () => {
+            curWinScrollY = window.scrollY
+            isZoomIn = !isZoomIn
+            setSideGap()
+            zoomInImg.setAttribute('src', img.getAttribute('src'))
+            selectedImgDom = img
+            if (isZoomIn) {
+              const imgRect = selectedImgDom.getBoundingClientRect()
+              const imgW = imgRect.width
+              const imgH = imgRect.height
+              const imgL = imgRect.left
+              const imgT = imgRect.top
+              const winW = document.body.offsetWidth - SIDE_GAP * 2
+              const winH = document.body.offsetHeight - SIDE_GAP * 2
+              const scaleX = winW / imgW
+              const scaleY = winH / imgH
+              const scale = (scaleX < scaleY ? scaleX : scaleY) || 1
+              const translateX = winW / 2 - (imgRect.x + imgW / 2) + SIDE_GAP
+              const translateY = winH / 2 - (imgRect.y + imgH / 2) + SIDE_GAP
 
-      const dragStartHandle = (event) => {
-        event.preventDefault();
-        isMouseDown = true;
-        lastMouseX = event.clientX;
-        lastMouseY = event.clientY;
-      };
-
-      let lastTime = 0;
-      const throttle = 100;
-
-      const dragHandle = (event) => {
-        if (isMouseDown) {
-          const currentTime = new Date().getTime();
-          if (currentTime - lastTime < throttle) {
-            return;
-          }
-          lastTime = currentTime;
-          const deltaX = event.clientX - lastMouseX;
-          const deltaY = event.clientY - lastMouseY;
-          translateX += deltaX;
-          translateY += deltaY;
-          lastMouseX = event.clientX;
-          lastMouseY = event.clientY;
-          targetImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-        }
-      };
-
-      const dragEndHandle = (event) => {
-        if (isMouseDown) {
-          event.stopPropagation();
-        }
-        isMouseDown = false;
-      };
-
-      targetImg.addEventListener("wheel", zoomHandle);
-      targetImg.addEventListener("mousedown", dragStartHandle);
-      targetImg.addEventListener("mousemove", dragHandle);
-      targetImg.addEventListener("mouseup", dragEndHandle);
-      targetImg.addEventListener("mouseleave", dragEndHandle);
-
-      maskDom.addEventListener("click", (event) => {
-        if (event.target !== event.currentTarget) {
-          return;
-        }
-        isBigImage = false;
-        showHandle(isBigImage);
-        scale = 1;
-        translateX = 0;
-        translateY = 0;
-        targetImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-      });
-
-      const imgDoms = document.querySelectorAll(
-        ".markdown-body img, .masonry-item img, #shuoshuo-content img",
-      );
-
-      const escapeKeyListener = (event) => {
-        if (event.key === "Escape" && isBigImage) {
-          isBigImage = false;
-          showHandle(isBigImage);
-          scale = 1;
-          translateX = 0;
-          translateY = 0;
-          targetImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-          // Remove the event listener when the image viewer is closed
-          document.removeEventListener("keydown", escapeKeyListener);
-        }
-      };
-
-      imgDoms.forEach((img) => {
-        img.addEventListener("click", () => {
-          isBigImage = true;
-          showHandle(isBigImage);
-          targetImg.src = img.src;
-          document.addEventListener("keydown", escapeKeyListener);
-        });
-      });
-
-      if (!imgDoms.length && maskDom) {
-        maskDom.parentNode.removeChild(maskDom);
+              selectedImgDom.classList.add('hide')
+              zoomInImgMask.classList.add('show')
+              zoomInImg.style.top = imgT + 'px'
+              zoomInImg.style.left = imgL + 'px'
+              zoomInImg.style.width = imgW + 'px'
+              zoomInImg.style.height = imgH + 'px'
+              zoomInImg.style.transform = `translateX(${translateX}px) translateY(${translateY}px) scale(${scale}) `
+            }
+          })
+        })
       }
     },
 
     // set how long ago language
     setHowLongAgoLanguage(p1, p2) {
-      return p2.replace(/%s/g, p1);
+      return p2.replace(/%s/g, p1)
     },
 
     getHowLongAgo(timestamp) {
-      const l = Global.language_ago;
-
-      const __Y = Math.floor(timestamp / (60 * 60 * 24 * 30) / 12);
-      const __M = Math.floor(timestamp / (60 * 60 * 24 * 30));
-      const __W = Math.floor(timestamp / (60 * 60 * 24) / 7);
-      const __d = Math.floor(timestamp / (60 * 60 * 24));
-      const __h = Math.floor((timestamp / (60 * 60)) % 24);
-      const __m = Math.floor((timestamp / 60) % 60);
-      const __s = Math.floor(timestamp % 60);
+      const lang = KEEP.language_ago
+      const __Y = Math.floor(timestamp / (60 * 60 * 24 * 30) / 12)
+      const __M = Math.floor(timestamp / (60 * 60 * 24 * 30))
+      const __W = Math.floor(timestamp / (60 * 60 * 24) / 7)
+      const __d = Math.floor(timestamp / (60 * 60 * 24))
+      const __h = Math.floor((timestamp / (60 * 60)) % 24)
+      const __m = Math.floor((timestamp / 60) % 60)
+      const __s = Math.floor(timestamp % 60)
 
       if (__Y > 0) {
-        return this.setHowLongAgoLanguage(__Y, l.year);
+        return this.setHowLongAgoLanguage(__Y, lang.year)
       } else if (__M > 0) {
-        return this.setHowLongAgoLanguage(__M, l.month);
+        return this.setHowLongAgoLanguage(__M, lang.month)
       } else if (__W > 0) {
-        return this.setHowLongAgoLanguage(__W, l.week);
+        return this.setHowLongAgoLanguage(__W, lang.week)
       } else if (__d > 0) {
-        return this.setHowLongAgoLanguage(__d, l.day);
+        return this.setHowLongAgoLanguage(__d, lang.day)
       } else if (__h > 0) {
-        return this.setHowLongAgoLanguage(__h, l.hour);
+        return this.setHowLongAgoLanguage(__h, lang.hour)
       } else if (__m > 0) {
-        return this.setHowLongAgoLanguage(__m, l.minute);
+        return this.setHowLongAgoLanguage(__m, lang.minute)
       } else if (__s > 0) {
-        return this.setHowLongAgoLanguage(__s, l.second);
+        return this.setHowLongAgoLanguage(__s, lang.second)
       }
     },
 
-    relativeTimeInHome() {
-      const post = document.querySelectorAll(
-        ".home-article-meta-info .home-article-date",
-      );
-      const df = Global.theme_config.home.article_date_format;
-      if (df === "relative") {
-        post &&
-          post.forEach((v) => {
-            const nowDate = Date.now();
-            const postDate = new Date(
-              v.dataset.date.split(" GMT")[0],
-            ).getTime();
-            v.innerHTML = this.getHowLongAgo(
-              Math.floor((nowDate - postDate) / 1000),
-            );
-          });
-      } else if (df === "auto") {
-        post &&
-          post.forEach((v) => {
-            const nowDate = Date.now();
-            const postDate = new Date(
-              v.dataset.date.split(" GMT")[0],
-            ).getTime();
-            const finalDays = Math.floor(
-              (nowDate - postDate) / (60 * 60 * 24 * 1000),
-            );
-            if (finalDays < 7) {
-              v.innerHTML = this.getHowLongAgo(
-                Math.floor((nowDate - postDate) / 1000),
-              );
-            }
-          });
-      }
+    setHowLongAgoInHome() {
+      const post = document.querySelectorAll('.article-meta-info .home-article-history')
+      post &&
+        post.forEach((v) => {
+          const nowDate = Date.now()
+          const postDate = new Date(v.dataset.updated.split(' GMT')[0]).getTime()
+          v.innerHTML = this.getHowLongAgo(Math.floor((nowDate - postDate) / 1000))
+        })
     },
-    /*
-    calculateMaterialColors(hex) {
-      // Convert hex to RGB
-      hex = hex.replace(/#/g, "");
-      if (hex.length === 3) {
-        hex = hex
-          .split("")
-          .map(function (hex) {
-            return hex + hex;
-          })
-          .join("");
+
+    // loading progress bar start
+    pjaxProgressBarStart() {
+      this.pjaxProgressBarTimer && clearInterval(this.pjaxProgressBarTimer)
+      if (this.isHasScrollProgressBar) {
+        this.scrollProgressBarDom.classList.add('hide')
       }
-      var result = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})[\da-z]{0,0}$/i.exec(
-        hex
-      );
-      if (!result) {
-        return null;
-      }
-      var r = parseInt(result[1], 16);
-      var g = parseInt(result[2], 16);
-      var b = parseInt(result[3], 16);
-      (r /= 255), (g /= 255), (b /= 255);
-      var max = Math.max(r, g, b),
-        min = Math.min(r, g, b);
-      var h,
-        s,
-        l = (max + min) / 2;
-      if (max == min) {
-        h = s = 0;
-      } else {
-        var d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch (max) {
-          case r:
-            h = (g - b) / d + (g < b ? 6 : 0);
-            break;
-          case g:
-            h = (b - r) / d + 2;
-            break;
-          case b:
-            h = (r - g) / d + 4;
-            break;
+
+      this.pjaxProgressBarDom.style.width = '0'
+      this.pjaxProgressIcon.classList.add('show')
+
+      let width = 1
+      const maxWidth = 99
+
+      this.pjaxProgressBarDom.classList.add('show')
+      this.pjaxProgressBarDom.style.width = width + '%'
+
+      this.pjaxProgressBarTimer = setInterval(() => {
+        width += 5
+        if (width > maxWidth) width = maxWidth
+        this.pjaxProgressBarDom.style.width = width + '%'
+      }, 100)
+    },
+
+    // loading progress bar end
+    pjaxProgressBarEnd() {
+      this.pjaxProgressBarTimer && clearInterval(this.pjaxProgressBarTimer)
+      this.pjaxProgressBarDom.style.width = '100%'
+
+      const temp_1 = setTimeout(() => {
+        this.pjaxProgressBarDom.classList.remove('show')
+        this.pjaxProgressIcon.classList.remove('show')
+
+        if (this.isHasScrollProgressBar) {
+          this.scrollProgressBarDom.classList.remove('hide')
         }
-        h /= 6;
-      }
-      s = s * 100;
-      s = Math.round(s);
-      l = l * 100;
-      l = Math.round(l);
-      h = Math.round(360 * h);
 
-      // Compute primary, secondary, and tertiary colors
-      const primaryColor = `hsl(${h}, ${s}%, ${l}%)`;
-      const secondaryColor = `hsl(${h}, ${s - 15}%, ${l - 15}%)`;
-      const tertiaryColor = `hsl(${h}, ${s - 25}%, ${l - 25}%)`;
-      document.documentElement.style.setProperty('--primary-color-temp', primaryColor);
-      document.documentElement.style.setProperty('--secondary-color-temp', secondaryColor);
-      document.documentElement.style.setProperty('--tertiary-color-temp', tertiaryColor);
-    },*/
-  };
+        const temp_2 = setTimeout(() => {
+          this.pjaxProgressBarDom.style.width = '0'
+          clearTimeout(temp_1), clearTimeout(temp_2)
+        }, 200)
+      }, 200)
+    },
+
+    // insert tooltip content dom
+    insertTooltipContent() {
+      const init = () => {
+        // tooltip
+        document.querySelectorAll('.tooltip').forEach((element) => {
+          const { content, offsetX, offsetY } = element.dataset
+
+          let style = ''
+          let sTop = ''
+          let sLeft = ''
+          if (offsetX) {
+            sTop = `left: ${offsetX};`
+          }
+          if (offsetY) {
+            sLeft = `top: ${offsetY};`
+          }
+          if (offsetX || offsetY) {
+            style = ` style="${sLeft}${sTop}"`
+          }
+
+          if (content) {
+            element.insertAdjacentHTML(
+              'afterbegin',
+              `<span class="tooltip-content"${style}>${content}</span>`
+            )
+          }
+        })
+
+        // tooltip-img
+        const imgsSet = {}
+
+        const toggleShowImg = (dom, nameIdx) => {
+          document.addEventListener('click', () => {
+            if (imgsSet[nameIdx].isShowImg) {
+              dom.classList.remove('show-img')
+              imgsSet[nameIdx].isShowImg = false
+            }
+          })
+        }
+
+        const loadImg = (img, imgLoaded) => {
+          const temp = new Image()
+          const { src } = img.dataset
+          temp.src = src
+          temp.onload = () => {
+            img.src = src
+            img.removeAttribute('lazyload')
+            imgLoaded = true
+          }
+        }
+
+        document.querySelectorAll('.tooltip-img').forEach((dom, idx) => {
+          const { imgUrl, name } = dom.dataset
+          if (imgUrl) {
+            const imgDomClass = `tooltip-img-${name}`
+            const nameIdx = `${name}_${idx}`
+            const imgDom = `<img class="${imgDomClass}" lazyload data-src="${imgUrl}" alt="${name}">`
+            const imgTooltipBox = `<div class="tooltip-img-box">${imgDom}</div>`
+
+            imgsSet[nameIdx] = {
+              imgLoaded: false,
+              isShowImg: false
+            }
+
+            dom.insertAdjacentHTML('afterbegin', imgTooltipBox)
+            dom.addEventListener('click', (e) => {
+              if (!imgsSet[nameIdx].imgLoaded) {
+                loadImg(
+                  document.querySelector(`.tooltip-img-box img.${imgDomClass}`),
+                  imgsSet[nameIdx].imgLoaded
+                )
+              }
+              imgsSet[nameIdx].isShowImg = !imgsSet[nameIdx].isShowImg
+              dom.classList.toggle('show-img')
+              e.stopPropagation()
+            })
+
+            toggleShowImg(dom, nameIdx)
+          }
+        })
+      }
+      setTimeout(() => {
+        init()
+      }, 1000)
+    },
+
+    // busuanzi initialize handle
+    siteCountInitialize() {
+      if (KEEP.theme_config?.website_count?.busuanzi_count?.enable === true) {
+        const script = document.createElement('script')
+        script.async = true
+        script.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
+        document.body.appendChild(script)
+
+        const getText = (selector) => {
+          return document.querySelector(selector)?.innerText
+        }
+
+        script.onload = () => {
+          setTimeout(() => {
+            if (
+              getText('#busuanzi_value_site_uv') ||
+              getText('#busuanzi_value_site_pv') ||
+              getText('#busuanzi_value_page_pv')
+            ) {
+              const tmpDom1 = document.querySelector('.footer .count-item .uv')
+              const tmpDom2 = document.querySelector('.footer .count-item .pv')
+              const tmpDom3 = document.querySelector('.article-meta-info .article-pv')
+              tmpDom1 && (tmpDom1.style.display = 'flex')
+              tmpDom2 && (tmpDom2.style.display = 'flex')
+              tmpDom3 && (tmpDom3.style.display = 'inline-block')
+            }
+          }, 1000)
+        }
+      }
+    },
+
+    // page number jump handle
+    pageNumberJump() {
+      const inputDom = document.querySelector('.paginator .page-number-input')
+      inputDom &&
+        inputDom.addEventListener('change', (e) => {
+          const min = 1
+          const max = Number(e.target.max)
+          let current = Number(e.target.value)
+
+          if (current <= 0) {
+            inputDom.value = min
+            current = min
+          }
+
+          if (current > max) {
+            inputDom.value = max
+            current = max
+          }
+
+          const tempHref = window.location.href.replace(/\/$/, '').split('/page/')[0]
+
+          if (current === 1) {
+            window.location.href = tempHref
+          } else {
+            window.location.href = tempHref + '/page/' + current
+          }
+        })
+    }
+  }
+
+  // init data
+  KEEP.utils.initData()
 
   // init scroll
-  Global.utils.registerWindowScroll();
+  KEEP.utils.registerWindowScroll()
 
   // toggle show tools list
-  Global.utils.toggleToolsList();
+  KEEP.utils.toggleShowToolsList()
 
   // global font adjust
-  Global.utils.globalFontSizeAdjust();
+  KEEP.utils.globalFontAdjust()
 
-  // adjust content area width
-  Global.utils.contentAreaWidthAdjust();
-
-  // go comment
-  Global.utils.goComment();
-
-  // init page height handle
-  Global.utils.initPageHeightHandle();
-
-  // init first screen height
-  Global.utils.inithomeBannerHeight();
+  // check whether TOC exists
+  KEEP.utils.initHasToc()
 
   // big image viewer handle
-  Global.utils.imageViewer();
+  KEEP.utils.zoomInImage()
 
-  // set how long ago in home article block
-  Global.utils.relativeTimeInHome();
+  // set how long age in home article block
+  KEEP.utils.setHowLongAgoInHome()
 
-  // calculate material colors
-  //Global.utils.calculateMaterialColors(Global.theme_config.colors.primary);
+  // insert tooltip content dom
+  KEEP.utils.insertTooltipContent()
+
+  // busuanzi initialize
+  KEEP.utils.siteCountInitialize()
+
+  // page number jump handle
+  KEEP.utils.pageNumberJump()
 }
