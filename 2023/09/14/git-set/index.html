@@ -244,7 +244,7 @@
 
             <span class="meta-info-item article-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc">2023-09-16 16:16:50</span>
+                <span class="pc">2023-09-17 10:12:46</span>
             </span>
         
 
@@ -280,7 +280,7 @@
         
         
             <span class="meta-info-item article-wordcount">
-                <i class="icon fas fa-file-word"></i>&nbsp;<span>1.2k 字</span>
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>1.1k 字</span>
             </span>
         
         
@@ -344,14 +344,17 @@
 <p><strong>https和ssh的区别</strong></p>
 <ul>
 <li>HTTPS协议只认账号。如果使用HTTPS操作远程仓库，则需要使用账号密码来做权限的认证。<br>SSH协议只认机器。当使用SSH操作远程仓库的话，需要使用公钥和私钥对来做权限的认证。</li>
-<li>前者可以随意克隆github上的项目，而不管是谁的；而后者则是你必须是你要克隆的项目的拥有者或管理员，且需要先添加 SSH key ，否则无法克隆。</li>
-<li>https url 在push的时候是需要验证用户名和密码的；而 SSH 在push的时候，是不需要输入用户名的，如果配置SSH key的时候设置了密码，则需要输入密码的，否则直接是不需要输入密码的。</li>
+<li>HTTPS协议在未保存凭据的时候push是需要验证用户名和密码的<br>SSH协议在push的时候，除非如果配置SSH key的时候设置了密码，否则是不需要输入用户名的</li>
 </ul>
-<p><strong>git为什么要配置用户名和邮箱</strong></p>
+<p><strong>git配置的用户名和邮箱有什么用？本地用户名和邮箱可以与线上git地址配置不一样的吗？</strong></p>
 <ul>
-<li>git作为一个分布式版本控制系统，远程仓库为了跟踪是谁提交的代码，需要提交这提供身份信息：邮箱和用户名。当然，由于这里的用户名和邮箱完全由提交者设置，所以可能会出现提交者随意填写的情况发生。不过，当这种情况发生时，可以通过一些机制查询出真正的提交者。</li>
+<li>远程仓库为了跟踪是谁提交的代码，需要提交这提供身份信息：邮箱和用户名。</li>
+<li>可以,本地Git的用户名和邮箱地址主要用于标识提交记录中的作者信息，而远程Git服务上的用户名通常用于身份验证和访问控制。此外<ul>
+<li>如果Git配置的邮箱是GitHub中存在的邮箱，则commits里显示的是这个邮箱对应的账号</li>
+<li>如果Git配置的邮箱是一个在GitHub里不存在的邮箱，则commits里显示的是Git配置的用户名</li>
 </ul>
-<p><strong>Git和GitHub可不可以配置不同的邮箱和用户名</strong></p>
+</li>
+</ul>
 <blockquote>
 <p>参考文章：<br><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35495339/article/details/92847819" >Github 生成SSH秘钥（详细教程）<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41100617/article/details/131891875" >对使用Git、GitHub时邮箱和用户名的理解<i class="fas fa-external-link-alt"></i></a></p>
 </blockquote>
@@ -372,14 +375,12 @@
                       style="max-width:60%;min-width:200px"
                 >
 
-<p><strong>设置https 代理</strong><br>Git代理有两种设置方式，分别是全局代理和只对Github代理，建议只对github 代理。<br>代理协议也有两种，分别是使用http代理和使用socks5代理，建议使用socks5代理。<br>注意下面代码的端口号需要根据你自己的代理端口设定，比如我的代理socks端口是4781。</p>
-<p><strong>只针对Github代理（推荐）</strong></p>
+<p><strong>设置Github代理</strong><br>Git代理有两种设置方式，分别是全局代理和只对Github代理，建议只对github 代理。<br>代理协议也有两种，分别是使用http代理和使用socks5代理，建议使用socks5代理。<br>注意下面代码的端口号需要根据你自己的代理端口设定，比如我的代理socks端口是4781。</p>
+<p><strong>针对Github代理</strong></p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用socks5代理（推荐）</span></span><br><span class="line">git config <span class="literal">--global</span> http.https://github.com.proxy socks5://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">4781</span></span><br><span class="line"><span class="comment">#使用http代理（不推荐）</span></span><br><span class="line">git config <span class="literal">--global</span> http.https://github.com.proxy http://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">4781</span></span><br></pre></td></tr></table></figure>
-<p><strong>全局设置</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用http代理</span></span><br><span class="line">git config <span class="literal">--global</span> http.proxy http://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">4780</span></span><br><span class="line">git config <span class="literal">--global</span> https.proxy https://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">4780</span></span><br><span class="line"><span class="comment">#使用socks5代理</span></span><br><span class="line">git config <span class="literal">--global</span> http.proxy socks5://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">4781</span></span><br><span class="line">git config <span class="literal">--global</span> https.proxy socks5://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">4781</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>取消代理</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config <span class="literal">--global</span> <span class="literal">--unset</span> http.proxy</span><br><span class="line">git config <span class="literal">--global</span> <span class="literal">--unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config <span class="literal">--global</span> http.https://github.com.proxy <span class="literal">--unset</span> http.proxy</span><br><span class="line">git config <span class="literal">--global</span> http.https://github.com.proxy <span class="literal">--unset</span> https.proxy</span><br></pre></td></tr></table></figure>
 
             </div>
 
