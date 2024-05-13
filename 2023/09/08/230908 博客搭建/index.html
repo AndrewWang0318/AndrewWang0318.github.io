@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="博客搭建攻略" />
+    <meta name="hexo-theme-A4" content="v1.8.8" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>Andrew</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery.min.css">
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+    
+    
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">Andrew</a> 
+            <span class="description"></span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+            
+                <li><a href="/categories/">分类</a></li>
+            
+        
+            
+                <li><a href="/case/">案例</a></li>
+            
+        
+            
+                <li><a href="/about/">关于</a></li>
+            
+        
+            
+                <li><a href="/masonry/">相册</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            博客搭建攻略
+        </div>
+      
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%89%8D%E7%BD%AE%E6%9D%A1%E4%BB%B6"><span class="post-toc-text">前置条件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E5%AE%89%E8%A3%85hexo%E6%A1%86%E6%9E%B6%E5%B9%B6%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2"><span class="post-toc-text">第一步: 安装hexo框架并生成博客</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AEA4%E4%B8%BB%E9%A2%98"><span class="post-toc-text">第二步：配置A4主题</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%85%B3%E8%81%94github"><span class="post-toc-text">第三步：关联github</span></a></li></ol>
+            
+        
+        <link rel="stylesheet" type="text/css" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h1><ul>
+<li>具有web前端初级技能水平</li>
+<li>已配置好的node环境</li>
+<li>已拥有github账号,并熟悉GIT操作</li>
+</ul>
+<h1 id="第一步-安装hexo框架并生成博客"><a href="#第一步-安装hexo框架并生成博客" class="headerlink" title="第一步: 安装hexo框架并生成博客"></a>第一步: 安装hexo框架并生成博客</h1><ul>
+<li><p>使用npm安装hexo框架： npm install hexo-cli -g </p>
+</li>
+<li><p>到文件目录下使用hexo初始化博客：hexo init 你的博客文件名</p>
+</li>
+<li><p>进入生成好的博客：cd 你的博客文件名</p>
+</li>
+<li><p>安装博客依赖：npm install</p>
+</li>
+<li><p>确认博客是否可以运行：hexo server （博客默认运行在本地4000端口）</p>
+</li>
+<li><p>恭喜~到这一步，博客已经运行起来了</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">如需深入了解hexo框架,请点击这里</a></p>
+<a href="/img/posts/230908/001.jpg" class="gallery-item" style="box-shadow: none;"> <img src="/img/posts/230908/001.jpg" style="max-width:80%;min-width:200px"/></a></li>
+</ul>
+<h1 id="第二步：配置A4主题"><a href="#第二步：配置A4主题" class="headerlink" title="第二步：配置A4主题"></a>第二步：配置A4主题</h1><ul>
+<li>在博客根目录下安装主题：npm install hexo-theme-a4@latest</li>
+<li>在博客根目录创建_config.a4.yml文件,将以下内容复制进入文件（对主题的所有个性化配置都将在_config.a4.yml文件中进行，可按照文件中的注释自行配置）<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ‘首页’ 和 ‘文章’ 较为 特殊</span></span><br><span class="line"><span class="comment"># 目前如果你想修改 ‘文章’ 为 其他别名，记得去_config.yml中把，menu和showInMenu中的 &#x27;文章&#x27; 都也同步修改，或者注释掉，否则会产生影响</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="string">首页:</span> <span class="string">/</span>  <span class="comment">#需要hexo new page index,在index/index.md填写的内容将会展现在首页上</span></span><br><span class="line">  <span class="string">文章:</span> <span class="string">/list/</span> <span class="comment"># 需要hexo new page list</span></span><br><span class="line">  <span class="comment"># 添加其他页面格式举例：</span></span><br><span class="line">  <span class="comment"># 关于: /about/ # 需要hexo new page about</span></span><br><span class="line">  <span class="comment"># 标签: /tags/ #需要hexo new page tags</span></span><br><span class="line">  <span class="comment"># 分类: /categories/ # 需要hexo new page categories</span></span><br><span class="line">  <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 首页你想要展示的menu链接，注意当你修改了menu中的别名，这里要随着更改，不然你会疑惑怎么首页没有修改后的别名</span></span><br><span class="line"><span class="attr">showInMenu:</span>  <span class="comment"># menu 中的哪些页面显示在首页中（“首页”必定显示）</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">文章</span>  <span class="comment"># 将在首页显示 文章 链接</span></span><br><span class="line">  <span class="comment"># - 关于</span></span><br><span class="line">  <span class="comment"># - 标签</span></span><br><span class="line">  <span class="comment"># - 分类</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 因为 最终 页面的生成 会取 _config.a4.yml 和 _config.yml 的并集</span></span><br><span class="line"><span class="comment"># 所以当你复制了一份该配置文件为 _config.a4.yml后，强烈建议你将 _config.yml 中的 menu,showInMenu中的配置都 注释掉</span></span><br><span class="line"><span class="comment"># 甚至可以注释掉 _config.yml中所有的配置，这样最终只会基于你的 _config.a4.yml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">index:</span>  <span class="comment"># 首页相关配置</span></span><br><span class="line">  <span class="attr">header:</span>  <span class="comment"># 首页的页眉 以及 404页面，当你没开启一言，将会每次刷新页面随机展示下面的语句</span></span><br><span class="line">    <span class="comment">#- &quot;我忘明月很久，明月始终望我&quot;</span></span><br><span class="line">    <span class="comment">#- &quot;人山人海，人来人往&quot;</span></span><br><span class="line">    <span class="comment">#- &quot;看过大海的人不会忘记海的广阔&quot;</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">  <span class="attr">hitokoto:</span> <span class="literal">false</span> <span class="comment"># 一言：调用网络语句展示的接口</span></span><br><span class="line">  <span class="attr">footer:</span> <span class="string">Email:123456789@gmail.com</span> <span class="comment"># 除了可以填写任何文字外，可以自动邮箱链接化，但需按照这个格式填写：Email:xxx@gmail.com</span></span><br><span class="line">  <span class="attr">titlePosition:</span> <span class="string">left</span> <span class="comment"># center | left  # 首页标题的位置</span></span><br><span class="line"></span><br><span class="line"><span class="attr">footerLink:</span> <span class="comment"># 底部的链接自定义</span></span><br><span class="line">  <span class="attr">info:</span> <span class="string">©</span> <span class="number">1949</span><span class="number">-2024</span> <span class="string">China</span>  <span class="comment"># info这个单词不能修改，不想使用可为空</span></span><br><span class="line">  <span class="comment"># 添加链接格式 举例</span></span><br><span class="line">  <span class="comment"># 友链: /friends/ # 需要hexo new page friends</span></span><br><span class="line">  <span class="comment"># 联系: /contact/ # 需要hexo new page contact</span></span><br><span class="line">  <span class="comment"># 支持: /support/ # 需要hexo new page support</span></span><br><span class="line">  <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line"><span class="attr">post:</span> <span class="comment">#除首页之外页面</span></span><br><span class="line">  <span class="attr">footer:</span> <span class="string">🌊看过大海的人不会忘记海的广阔🌊</span>   <span class="comment"># 底部左侧 自定义信息</span></span><br><span class="line">  <span class="attr">themeInfo:</span> <span class="literal">true</span> <span class="comment"># true | false  # 是否开启 底部右侧 声明本站信息</span></span><br><span class="line">  <span class="attr">endContent:</span> <span class="string">以上</span> <span class="comment"># 当你使用了 评论功能，此配置才会生效</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 相对于source目录下的头像url</span></span><br><span class="line"><span class="attr">favicon:</span> <span class="string">/img/favicon.webp</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否启用一些特色工具 false | true</span></span><br><span class="line"><span class="attr">tool:</span></span><br><span class="line">  <span class="attr">darkMode:</span> <span class="literal">true</span> <span class="comment"># 暗黑模式</span></span><br><span class="line">  <span class="attr">returnToTop:</span> <span class="literal">true</span> <span class="comment"># 回到顶部按钮 </span></span><br><span class="line">  <span class="attr">returnToLast:</span> <span class="literal">true</span> <span class="comment"># 回退页面按钮</span></span><br><span class="line">  <span class="attr">topToc:</span> <span class="literal">true</span> <span class="comment"># 文章顶部目录</span></span><br><span class="line">  <span class="attr">leftToc:</span> <span class="literal">true</span> <span class="comment"># 文章左侧目录 目前仅支持大屏幕浮现</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># 以上为基本配置，实现了A4主题追求的纯净风</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># 以下为 非必要不必更改的配置</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># ps：还有经过A4作者测试，可供你使用的插件，详见：https://ninojay.top/tags/hexoPlugin/</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 你可能会用到的 https://ninojay.top/2023/website-cdn/</span></span><br><span class="line"><span class="attr">cdn:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span> <span class="comment"># 如果你修改了 css/js ，也许需要把cdn设置为false才会生效</span></span><br><span class="line">  <span class="attr">choose:</span> <span class="string">jsdelivr</span>  <span class="comment"># aliyun | unpkg| jsdelivr  # 都调整为利于国内的cdn，建议使用默认的 jsdelivr 即可</span></span><br><span class="line">  <span class="comment"># 因为是免费CDN，所以有挂的风险，一旦发现网站样式出现原来没有的问题，请尝试关闭CDN</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实验性功能：A4色调调整：颜色搭配是很主观的行为</span></span><br><span class="line"><span class="comment"># 设置为 false 为 A4 默认灰白色调，可设置为 true 直接启动 体验下 另一种护眼预置色调</span></span><br><span class="line"><span class="comment"># 注：颜色代码需加“#”，颜色单词不需要加“#”</span></span><br><span class="line"><span class="comment"># 更多A4色调搭配推荐：https://ninojay.top/hexoplugin/A4-color-change/</span></span><br><span class="line"><span class="attr">color:</span> </span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span> <span class="comment"># true | false </span></span><br><span class="line">  <span class="attr">font:</span> <span class="string">&quot;#9e5345&quot;</span> <span class="comment"># 字体颜色</span></span><br><span class="line">  <span class="attr">background:</span> <span class="string">&quot;#e8e0c9&quot;</span> <span class="comment"># 最底部层背景颜色</span></span><br><span class="line">  <span class="attr">indexBackGround:</span> <span class="string">&quot;#efeae2&quot;</span> <span class="comment"># 首页层颜色</span></span><br><span class="line">  <span class="attr">postBackGround:</span> <span class="string">&quot;#efeae2&quot;</span> <span class="comment"># 文章页层颜色</span></span><br><span class="line">  <span class="attr">codeBackGround:</span> <span class="string">&quot;#e8e0c9&quot;</span> <span class="comment"># 代码块背景颜色</span></span><br><span class="line">  <span class="attr">codeFont:</span> <span class="string">&quot;#2e5041&quot;</span> <span class="comment"># 代码块字体颜色 </span></span><br><span class="line">  <span class="attr">linkBeforeClick:</span> <span class="string">&quot;#2e5041&quot;</span> <span class="comment"># 链接点击前的颜色</span></span><br><span class="line">  <span class="attr">linkAfterClick:</span> <span class="string">&quot;#9c9caf&quot;</span> <span class="comment"># 链接点击后的颜色</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A4背景引入图片</span></span><br><span class="line"><span class="comment"># 图片你应该先放到 source下，下面选项的图片路径 即为 相对于 source 目录的路径</span></span><br><span class="line"><span class="attr">imageShow:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">background:</span> <span class="string">/img/favicon.webp</span> <span class="comment"># 最底部层背景</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A4默认中文使用霞鹜文楷，如果你想关闭这种字体，首先保证enable为 true 接着可以开关对应字体</span></span><br><span class="line"><span class="attr">font:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span> <span class="comment"># 是否使用字体开关功能</span></span><br><span class="line">  <span class="attr">LXGWWenKai:</span> <span class="literal">true</span> <span class="comment"># 霞鹜文楷 如果关闭，中文则使用的是 思源宋体，思源宋体不提供关闭 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Comment plugin</span></span><br><span class="line"><span class="comment"># 评论插件：需要根据教程自行部署评论服务</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="attr">comment:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span> </span><br><span class="line">  <span class="attr">use:</span> <span class="string">waline</span> <span class="comment"># values: waline、twikoo、artalk</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Waline</span></span><br><span class="line">  <span class="comment"># See: https://waline.js.org/guide/get-started.html</span></span><br><span class="line">  <span class="attr">waline:</span></span><br><span class="line">    <span class="attr">serverUrl:</span>  <span class="comment"># Waline server url(vercel) example: https://example.example.com</span></span><br><span class="line">    <span class="attr">lang:</span> <span class="string">zh-CN</span> <span class="comment"># Waline language, default: zh-CN. See: https://waline.js.org/guide/client/i18n.html</span></span><br><span class="line">    <span class="attr">placeholder:</span> <span class="string">留下你的评论吧。</span> <span class="comment"># 评论框背景信息</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Twikoo</span></span><br><span class="line">  <span class="comment"># See: https://twikoo.js.org/quick-start.html</span></span><br><span class="line">  <span class="attr">twikoo:</span></span><br><span class="line">    <span class="attr">envId:</span>  <span class="comment"># 腾讯云环境填 envId；其它环境填地址</span></span><br><span class="line">    <span class="attr">region:</span>  <span class="comment"># 环境地域，默认为 ap-shanghai，腾讯云环境填 ap-shanghai 或 ap-guangzhou；其它环境不填</span></span><br><span class="line">    <span class="attr">lang:</span>  <span class="comment"># 用于手动设定评论区语言，支持的语言列表 https://github.com/imaegoo/twikoo/blob/main/src/client/utils/i18n/index.js</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Artalk</span></span><br><span class="line">  <span class="comment"># See: https://artalk.js.org/guide/deploy.html</span></span><br><span class="line">  <span class="attr">artalk:</span></span><br><span class="line">    <span class="attr">server:</span>  <span class="comment"># Artalk 后端地址</span></span><br><span class="line"></span><br><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">css:</span> <span class="string">css/custom.css</span></span><br><span class="line"></span><br><span class="line"><span class="attr">version:</span> <span class="string">v1.8.9</span></span><br></pre></td></tr></table></figure></li>
+<li>在博客根目录选中_config.yml将主题切换为A4(全局搜索theme字段，将a4填入theme后)<a href="/img/posts/230908/002.jpg" class="gallery-item" style="box-shadow: none;"> <img src="/img/posts/230908/002.jpg" style="max-width:80%;min-width:200px"/></a></li>
+<li>恭喜~到这一步，主题已经成功安装</li>
+<li><a target="_blank" rel="noopener" href="https://doc.ninojay.top/">如需深入了解A4主题,请点击这里</a></li>
+</ul>
+<h1 id="第三步：关联github"><a href="#第三步：关联github" class="headerlink" title="第三步：关联github"></a>第三步：关联github</h1><ul>
+<li>在github中创建以自己 账户名称.github.io 为文件名的项目，并将权限设为开放Public</li>
+<li>在博客根目录选中_config.yml配置deploy(全局搜索deploy字段,将以下内容修改为对应数据)<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span> <span class="comment"># 推送源头</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/github账户名称/github账户名称.github.io.git</span> <span class="comment"># 推送地址</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span> <span class="comment"># 推送分支</span></span><br><span class="line">  <span class="attr">message:</span> <span class="string">update</span> <span class="comment"># 推送成功后的提示信息</span></span><br></pre></td></tr></table></figure></li>
+<li>在博客根目录运行hexo clean 清理生成的资源</li>
+<li>在博客根目录运行hexo generate 生成的资源</li>
+<li>在博客根目录运行hexo deploy 推送资源到gihub（请确保本地已有github凭据）</li>
+<li>等待5分钟，并访问 <a target="_blank" rel="noopener" href="https://github.com/github%E8%B4%A6%E6%88%B7%E5%90%8D%E7%A7%B0/github%E8%B4%A6%E6%88%B7%E5%90%8D%E7%A7%B0.github.io.git">https://github.com/github账户名称/github账户名称.github.io.git</a></li>
+<li>恭喜~到这一步，已可以成功推送到github</li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment">如需深入了解推送相关,请点击这里</a></li>
+</ul>
+</div><script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-09-08</span>
+            
+                <span>该篇文章被 Andrew Wang</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/%E6%8A%80%E6%9C%AF/'>
+                            技术
+                        </a>
+                    
+                        <a href='/tags/%E6%95%99%E7%A8%8B/'>
+                            教程
+                        </a>
+                    
+                        <a href='/tags/%E5%8D%9A%E5%AE%A2/'>
+                            博客
+                        </a>
+                    
+                </span>
+             
+             
+                <span>归为分类:
+                    
+                    
+                        <a href='/categories/%E6%8A%80%E6%9C%AF/'>
+                            技术
+                        </a>
+                    
+                </span>
+            
+        
+        </i>
+    </div>
+    <br>
+    
+    <!-- <div class="post-footer-pre-next">
+        <span>上一篇：<a href=""></a></span>
+        <span class="post-footer-pre-next-last-span-right">上一篇：<a href=""></a></span>
+    </div> -->
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2023-2024 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>永远相信美好的事情即将发生</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery.min.js"></script>
+
+
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+
+    <!--暗黑模式-->
+    <script src="/js/darkmode-js.min.js"></script>
+    <script>
+        function addDarkmodeWidget() {
+        const options = {
+            bottom: '53px', // default: '32px'
+            right: 'unset', // default: '32px'
+            left: '42px', // default: 'unset'
+            time: '0.3s', // default: '0.3s'
+            mixColor: '#fff', // default: '#fff'
+            backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+            buttonColorDark: '#100f2c',  // default: '#100f2c'
+            buttonColorLight: '#fff', // default: '#fff'
+            saveInCookies: true, // default: true,
+            label: '🌓', // default: ''
+            autoMatchOsTheme: true // default: true
+        }
+    
+        const darkmode = new Darkmode(options);
+        darkmode.showWidget();
+        
+        }
+        window.addEventListener('load', addDarkmodeWidget);
+    </script>
+  
+</html>
