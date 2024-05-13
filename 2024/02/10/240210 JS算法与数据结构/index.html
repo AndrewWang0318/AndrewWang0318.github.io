@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="前端算法与数据结构" />
+    <meta name="hexo-theme-A4" content="v1.8.8" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>Andrew</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery.min.css">
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+    
+    
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">Andrew</a> 
+            <span class="description"></span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/tags/">标签</a></li>
+            
+        
+            
+                <li><a href="/categories/">分类</a></li>
+            
+        
+            
+                <li><a href="/case/">案例</a></li>
+            
+        
+            
+                <li><a href="/about/">关于</a></li>
+            
+        
+            
+                <li><a href="/masonry/">相册</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            前端算法与数据结构
+        </div>
+      
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="post-toc-text">数据结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%95%B0%E7%BB%84"><span class="post-toc-text">数组</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%A0%91%EF%BC%9A%E6%A0%91%E7%94%B1%E6%A0%B9%E8%8A%82%E7%82%B9-%E8%8A%82%E7%82%B9-%E5%8F%B6%E8%8A%82%E7%82%B9-%E7%BB%84%E6%88%90%EF%BC%9B%E4%BB%8E%E5%8F%B6%E8%8A%82%E7%82%B9%E5%88%B0%E6%A0%B9%E8%8A%82%E7%82%B9%E7%9A%84%E5%B1%82%E7%BA%A7%E4%B8%BA%E9%AB%98%E5%BA%A6-%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E5%BC%80%E5%8F%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E5%AD%90%E6%A0%91%E8%A2%AB%E7%A7%B0%E4%B8%BA%E5%BA%A6"><span class="post-toc-text">树：树由根节点 节点 叶节点 组成；从叶节点到根节点的层级为高度,一个节点开叉多少个子树被称为度</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E7%8E%B0"><span class="post-toc-text">常见算法及实现</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <link rel="stylesheet" type="text/css" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><ul>
+<li>数组<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = <span class="keyword">new</span> <span class="title class_">Array</span>(<span class="number">7</span>).<span class="title function_">fill</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure></li>
+<li>矩阵(二维数组)<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr2 = [</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+<li>栈<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只允许从尾部添加元素,只允许从尾部取出元素</span></span><br><span class="line"><span class="keyword">const</span> stack = <span class="keyword">new</span> <span class="title class_">Array</span>();</span><br><span class="line">stack.<span class="title function_">push</span>(<span class="string">&#x27;货物A&#x27;</span>);</span><br><span class="line">stack.<span class="title function_">push</span>(<span class="string">&#x27;货物B&#x27;</span>);</span><br><span class="line">stack.<span class="title function_">push</span>(<span class="string">&#x27;货物C&#x27;</span>);</span><br><span class="line">stack.<span class="title function_">push</span>(<span class="string">&#x27;货物D&#x27;</span>);</span><br><span class="line"><span class="keyword">while</span> (stack.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(stack[stack.<span class="property">length</span> - <span class="number">1</span>] + <span class="string">&#x27; 已卖出&#x27;</span>)</span><br><span class="line">  stack.<span class="title function_">pop</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>队列<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只允许从尾部添加元素,只允许从头部添加元素</span></span><br><span class="line"><span class="keyword">const</span> queue = [];</span><br><span class="line">queue.<span class="title function_">push</span>(<span class="string">&#x27;顾客 1&#x27;</span>)</span><br><span class="line">queue.<span class="title function_">push</span>(<span class="string">&#x27;顾客 2&#x27;</span>)</span><br><span class="line">queue.<span class="title function_">push</span>(<span class="string">&#x27;顾客 3&#x27;</span>)</span><br><span class="line">queue.<span class="title function_">push</span>(<span class="string">&#x27;顾客 4&#x27;</span>)</span><br><span class="line"><span class="keyword">while</span>(queue.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(queue[<span class="number">0</span>] + <span class="string">&#x27; 已取餐&#x27;</span>)</span><br><span class="line">  queue.<span class="title function_">shift</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>链表<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 链表的插入/删除效率高，但访问效率低，数组的访问效率高，但插入效率低</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">ListNode</span>(<span class="params">val=<span class="literal">null</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">val</span> = val;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">next</span> = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> head = <span class="keyword">new</span> <span class="title class_">ListNode</span>()</span><br><span class="line"><span class="keyword">const</span> node1 = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">const</span> node2 = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">const</span> node3 = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加链表元素 */</span></span><br><span class="line">head.<span class="property">next</span> = node1</span><br><span class="line">node1.<span class="property">next</span> = node2</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 插入链表元素：将node3插入到node1与node2之间, 重心在目标节点的前驱节点 */</span></span><br><span class="line">node3.<span class="property">next</span> = node1.<span class="property">next</span>;</span><br><span class="line">node1.<span class="property">next</span> = node3;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*  删除链表元素node3；只需要遍历时可以跳过目标元素即可 (将目标元素的前驱元素的next等于 后驱元素的next) */</span></span><br><span class="line">node1.<span class="property">next</span> = node3.<span class="property">next</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*  遍历链表,访问链表 */</span></span><br><span class="line"><span class="keyword">let</span> target = head;</span><br><span class="line"><span class="keyword">const</span> idx = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; idx; i++) &#123;</span><br><span class="line">  target = target.<span class="property">next</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(target)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="树：树由根节点-节点-叶节点-组成；从叶节点到根节点的层级为高度-一个节点开叉多少个子树被称为度"><a href="#树：树由根节点-节点-叶节点-组成；从叶节点到根节点的层级为高度-一个节点开叉多少个子树被称为度" class="headerlink" title="树：树由根节点 节点 叶节点 组成；从叶节点到根节点的层级为高度,一个节点开叉多少个子树被称为度"></a>树：树由根节点 节点 叶节点 组成；从叶节点到根节点的层级为高度,一个节点开叉多少个子树被称为度</h4><ul>
+<li>二叉树：二叉树可以没有根节点作为一颗空树存在；否则，它由根节点和左子树以及右子树连结，且左子树和右子树都是二叉树，是不能调换的<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">TreeNode</span>(<span class="params">val = <span class="literal">null</span></span>)&#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">val</span> = val;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">left</span> = <span class="variable language_">this</span>.<span class="property">right</span> = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> tree = <span class="keyword">new</span> <span class="title class_">TreeNode</span>(<span class="string">&#x27;A&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> temp_tree = &#123;</span><br><span class="line">  <span class="attr">val</span>: <span class="string">&#x27;A&#x27;</span>,</span><br><span class="line">  <span class="attr">left</span>:  &#123;</span><br><span class="line">    <span class="attr">val</span>: <span class="string">&#x27;B&#x27;</span>,</span><br><span class="line">    <span class="attr">left</span>:  &#123; <span class="attr">val</span>: <span class="string">&#x27;D&#x27;</span>, <span class="attr">right</span>: <span class="literal">null</span>, <span class="attr">left</span>: <span class="literal">null</span> &#125;,</span><br><span class="line">    <span class="attr">right</span>:  &#123; <span class="attr">val</span>: <span class="string">&#x27;E&#x27;</span>, <span class="attr">right</span>: <span class="literal">null</span>, <span class="attr">left</span>: <span class="literal">null</span> &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">right</span>:  &#123;</span><br><span class="line">    <span class="attr">val</span>: <span class="string">&#x27;C&#x27;</span>,</span><br><span class="line">    <span class="attr">left</span>: <span class="literal">null</span>,</span><br><span class="line">    <span class="attr">right</span>:  &#123; <span class="attr">val</span>: <span class="string">&#x27;F&#x27;</span>, <span class="attr">right</span>: <span class="literal">null</span>, <span class="attr">left</span>: <span class="literal">null</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(tree)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中序遍历</span></span><br><span class="line"><span class="comment">// 所有遍历函数的入参都是树的根结点对象</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">preorder</span>(<span class="params">root</span>) &#123;</span><br><span class="line">  <span class="comment">// 递归边界，root 为空</span></span><br><span class="line">  <span class="keyword">if</span>(!root) &#123;</span><br><span class="line">    <span class="keyword">return</span> </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 输出当前遍历的结点值</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;当前遍历的结点值是：&#x27;</span>, root.<span class="property">val</span>)  </span><br><span class="line">  <span class="comment">// 递归遍历左子树 </span></span><br><span class="line">  <span class="title function_">preorder</span>(root.<span class="property">left</span>)  </span><br><span class="line">  <span class="comment">// 递归遍历右子树  </span></span><br><span class="line">  <span class="title function_">preorder</span>(root.<span class="property">right</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(temp_tree);</span><br><span class="line"><span class="title function_">preorder</span>(temp_tree);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="常见算法及实现"><a href="#常见算法及实现" class="headerlink" title="常见算法及实现"></a>常见算法及实现</h4><ul>
+<li>数组排列组合算法<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="string">``</span><span class="string">`</span></span><br><span class="line"><span class="string">- 数组随机算法</span></span><br><span class="line"><span class="string">  `</span><span class="string">``</span>js</span><br></pre></td></tr></table></figure></li>
+</ul>
+</div><script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2024-02-10</span>
+            
+                <span>该篇文章被 Andrew Wang</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/%E6%8A%80%E6%9C%AF/'>
+                            技术
+                        </a>
+                    
+                        <a href='/tags/%E7%AE%97%E6%B3%95/'>
+                            算法
+                        </a>
+                    
+                        <a href='/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/'>
+                            数据结构
+                        </a>
+                    
+                </span>
+             
+             
+                <span>归为分类:
+                    
+                    
+                        <a href='/categories/%E6%8A%80%E6%9C%AF/'>
+                            技术
+                        </a>
+                    
+                </span>
+            
+        
+        </i>
+    </div>
+    <br>
+    
+    <!-- <div class="post-footer-pre-next">
+        <span>上一篇：<a href=""></a></span>
+        <span class="post-footer-pre-next-last-span-right">上一篇：<a href=""></a></span>
+    </div> -->
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2023-2024 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>永远相信美好的事情即将发生</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery.min.js"></script>
+
+
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+
+
+    <!--暗黑模式-->
+    <script src="/js/darkmode-js.min.js"></script>
+    <script>
+        function addDarkmodeWidget() {
+        const options = {
+            bottom: '53px', // default: '32px'
+            right: 'unset', // default: '32px'
+            left: '42px', // default: 'unset'
+            time: '0.3s', // default: '0.3s'
+            mixColor: '#fff', // default: '#fff'
+            backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+            buttonColorDark: '#100f2c',  // default: '#100f2c'
+            buttonColorLight: '#fff', // default: '#fff'
+            saveInCookies: true, // default: true,
+            label: '🌓', // default: ''
+            autoMatchOsTheme: true // default: true
+        }
+    
+        const darkmode = new Darkmode(options);
+        darkmode.showWidget();
+        
+        }
+        window.addEventListener('load', addDarkmodeWidget);
+    </script>
+  
+</html>
