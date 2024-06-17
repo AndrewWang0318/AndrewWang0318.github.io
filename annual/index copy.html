@@ -4,7 +4,7 @@
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <meta name="description" content="" />
+    <meta name="description" content="annual" />
     <meta name="hexo-theme-A4" content="v1.8.9" />
     <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
     <title>Andrew</title>
@@ -287,13 +287,7 @@
             
         
             
-                <li><i>
-                    
-                        <u>
-                            <a  href="/tags/">标签</a>
-                        </u>
-                    
-                </i></li>
+                <li><a href="/tags/">标签</a></li>
             
         
             
@@ -309,7 +303,13 @@
             
         
             
-                <li><a href="/annual/">年度</a></li>
+                <li><i>
+                    
+                        <u>
+                            <a  href="/annual/">年度</a>
+                        </u>
+                    
+                </i></li>
             
         
             
@@ -323,76 +323,194 @@
                     
 
                     
-                            
-
-
-<div class="archive-list">
-  <ul class="archive">
-
-    
-    <span><span class="darkmode-ignore">📌</span><i>技术</i></span>
- 
-    
-
-    
-    
-
-    
-
-    
-  
-    
-        <li>
-        <span class="archive-date">2024-04-01</span>
-        <div class="archive-main">
-            <a class="archive-title" href="/2024/04/01/240401%20JS%E9%80%9A%E7%94%A8%E6%A6%82%E5%BF%B5%E8%A7%A3%E9%87%8A/">JS通用概念解释</a>
-        </div>
-        </li>
-    
-  
-    
-        <li>
-        <span class="archive-date">2024-02-26</span>
-        <div class="archive-main">
-            <a class="archive-title" href="/2024/02/26/240226%20JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A0%B8%E5%BF%83/">JS设计模式核心</a>
-        </div>
-        </li>
-    
-  
-    
-        <li>
-        <span class="archive-date">2024-02-10</span>
-        <div class="archive-main">
-            <a class="archive-title" href="/2024/02/10/240210%20JS%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">前端算法与数据结构</a>
-        </div>
-        </li>
-    
-  
-    
-        <li>
-        <span class="archive-date">2023-09-14</span>
-        <div class="archive-main">
-            <a class="archive-title" href="/2023/09/14/230914%20GIT%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/">git相关配置及操作</a>
-        </div>
-        </li>
-    
-  
-    
-        <li>
-        <span class="archive-date">2023-09-08</span>
-        <div class="archive-main">
-            <a class="archive-title" href="/2023/09/08/230908%20%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建攻略</a>
-        </div>
-        </li>
-    
-  
-  </ul>
-</div>
- 
-                    
                     
                     
                     <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+
+    
+
+    <div class="post-md">
+        
+            
+        
+        <link rel="stylesheet" type="text/css" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/lightgallery.min.css" /><div class=".article-gallery"><style>
+* {
+  box-sizing: border-box;
+}
+
+#app {
+  background-image: linear-gradient(to bottom, #222, #444);
+  color: #bbb;
+  padding: 1rem;
+}
+
+h1 {
+  text-align: center;
+}
+
+.timeline {
+  position: relative;
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 1300px;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    border: 1px solid hotpink;
+    left: 40px;
+    top: 0;
+  }
+  
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  @media screen and (min-width: 700px;) {
+    padding: 2rem;
+    &:before {
+      left: calc(50% - 1px);
+      right: auto;
+    }
+  }
+}
+
+.timeline__item {
+  
+  padding: 1rem;
+  border: 2px solid hotpink;
+  border-image: linear-gradient(to right, skyblue 0%, hotpink 100%);
+  border-image-slice: 1;
+  position: relative;
+  margin: 1rem 3rem 1rem 1rem;
+  clear: both;
+  
+  &:after,
+  &:before {
+    content: '';
+    position: absolute;
+  }
+  
+  &:before {
+    right: -10px;
+    top: calc(50% - 5px);
+    border-style: solid;
+    border-color: hotpink hotpink transparent transparent;
+    border-width: 10px;
+    transform: rotate(45deg);
+  }
+  
+  @media screen and (min-width: 700px;) {
+    width: 44%;
+    margin: 1rem;
+    
+    &:nth-of-type(2n) {
+      float: right;
+      margin: 1rem;
+      border-image: linear-gradient(to right, hotpink 0%, skyblue 100%);
+      border-image-slice: 1;
+
+      &:before {
+        right: auto;
+        left: -10px;
+      border-color:transparent transparent hotpink hotpink;
+      }
+    }
+  }
+}
+
+.timeline__item--year {
+    text-align: center;
+  max-width: 150px;
+  margin: 0 48px 0 auto;
+  font-size: 1.8rem;
+  background-color: #333;
+  line-height: 1;
+  border-image: none;
+  padding: .5rem 1rem 1rem;
+  
+  &:before {
+    display: none;
+  }
+  
+  @media screen and (min-width: 700px;) {
+    text-align: center;
+      margin: 0 auto;
+    
+    &:nth-of-type(2n) {
+      float: none;
+      margin: 0 auto;
+      border-image: none;
+  
+      &:before {
+        display: none;
+      }
+    }
+  }
+}
+</style>
+
+<div id="app">
+  <h1>年度任务</h1>
+  <div class="timeline">
+    <h2 class="timeline__item timeline__item--year">2023</h2>
+    <div class="timeline__item">
+      <ul style="margin:0">
+        <li><del>📖搭建个人博客</del></li>
+        <li><del>📖编写社区App</del></li>
+      </ul>
+    </div>
+    <h2 class="timeline__item timeline__item--year">2024</h2>
+    <div class="timeline__item">
+      <ul style="margin:0">
+        <li><del>📖阅读《亲密关系》</del></li>
+        <li>📜学习《前端算法与数据结构》</li>
+        <li>📜学习《JS设计模式核心原理》</li>
+        <li>📜学习 TypeScript</li>
+      </ul>
+    </div>
+    <h2 class="timeline__item timeline__item--year">未来期待</h2>
+    <div class="timeline__item">
+      <ul style="margin:0">
+        <li>🗺️摩托车旅行</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div><script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+        </i>
+    </div>
+    <br>
+    
+    <!-- <div class="post-footer-pre-next">
+        <span>上一篇：<a href=""></a></span>
+        <span class="post-footer-pre-next-last-span-right">上一篇：<a href=""></a></span>
+    </div> -->
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
                     
                     
                     <div class="footer">
