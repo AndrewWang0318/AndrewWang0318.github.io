@@ -61,171 +61,6 @@
 
 <meta name="generator" content="Hexo 7.1.1"></head>
     
-    <style>
-        :root {
-            --waline-theme-color: #9e5345; 
-            --waline-color: #9e5345; 
-            --waline-border-color: #9e5345; 
-            --waline-white: #9e5345; 
-            --waline-bgcolor-light: #efeae2;  
-        }
-        body {
-            color: #9e5345;
-            background: #e8e0c9;
-        }
-        .post-md code {
-            background: #e8e0c9;
-            color: #2e5041; 
-        }
-        .post-md pre, .post-md .highlight {
-            background: #e8e0c9;
-            color: #2e5041; 
-        }
-        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
-            color: #9e5345;
-        }
-        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
-            color: #9e5345;
-        }
-        .year-font-color {
-            color: #9e5345 !important;
-        }
-        .wl-card span.wl-nick {
-            color: #9e5345; 
-        }
-        .wl-card .wl-badge {
-            border: 1px solid #9e5345;
-            color: #9e5345; 
-        }
-        .wl-btn {
-            border: 1px solid #9e5345; 
-            color:  #9e5345;  
-        }
-        .wl-btn.primary {
-            color: #efeae2; 
-        }
-        .wl-header label {
-            color: #9e5345;
-        }
-        a {
-            color: #2e5041;
-        }
-
-        .post-md a {
-            color: #2e5041;
-        }
-
-        .nav li a {
-            color: #2e5041;
-        }
-
-        .archive-main a:link {
-            color: #2e5041;
-        }
-        .archive-main a:visited {
-            color: #9c9caf; 
-        }
-
-        .archive li span {
-            color: #9e5345;
-        }
-
-        .post-main-title {
-            color: #9e5345;
-        }
-
-        .post-md h1,
-        .post-md h2,
-        .post-md h3,
-        .post-md h4,
-        .post-md h5,
-        .post-md h6 {
-            color: #9e5345;
-        }
-
-        [data-waline] p {
-            color: #9e5345;
-        }
-        [data-waline] a {
-            color: #9e5345;
-        } 
-        .wl-sort li.active {
-            color: #9e5345;
-        }
-
-        .wl-card .wl-meta>span {
-            background: #efeae2;
-        }
-
-        .paper {
-            background: #e8e0c9;
-        }
-
-        .index-main {
-            background: #efeae2;
-        }
-
-        .paper-main {
-            background: #efeae2;
-        }
-
-        .wl-panel {
-            background: #efeae2;
-        }
-
-        .archive li:nth-child(odd) {
-            background: #efeae2;
-            ;
-        }
-
-        .archive li:nth-child(even) {
-            background: #efeae2;
-        }
-
-        .post-md table tr:nth-child(odd) td {
-            background: #efeae2;
-        }
-
-        .post-md table tr:nth-child(even) td {
-            background: #efeae2;
-        }
-
-    
-        .progress-wrap::after {
-            color: #9e5345; /* 箭头的颜色 */
-        }
-        .progress-wrap svg.progress-circle path {
-	        stroke: #9e5345; /* 边框的颜色 */
-        }
-        .progress-wrap::before {
-	        background-image: linear-gradient(298deg, #2e5041, #2e5041); /* 鼠标滑过的箭头颜色 */
-         }
-
-        .return-to-last-progress-wrap::after {
-            color: #9e5345; /* 箭头的颜色 */
-        }
-        .return-to-last-progress-wrap svg.progress-circle path {
-	        stroke: #9e5345; /* 边框的颜色 */
-        }
-        .return-to-last-progress-wrap::before {
-	        background-image: linear-gradient(298deg, #2e5041, #2e5041); /* 鼠标滑过的箭头颜色 */
-         }
-
-         .left-toc-container::-webkit-scrollbar-thumb {
-            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
-        }
-
-        .bs-docs-sidebar .nav>.active>a,
-        .bs-docs-sidebar .nav>li>a:hover,
-        .bs-docs-sidebar .nav>li>a:focus {
-            color: #2e5041;
-            border-left-color: #2e5041;
-        }
-        .bs-docs-sidebar .nav>li>a {
-            color:  #9e5345;
-        }
-    </style>
-
     
     
     <body>
@@ -238,7 +73,7 @@
                 left: '42px', // default: 'unset'
                 time: '0.3s', // default: '0.3s'
                 mixColor: '#fff', // default: '#fff'
-                backgroundColor: ' #e8e0c9  ',  // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
                 buttonColorDark: '#100f2c',  // default: '#100f2c'
                 buttonColorLight: '#fff', // default: '#fff'
                 saveInCookies: true, // default: true,
@@ -305,9 +140,7 @@
             
                 <li><i>
                     
-                        <u>
-                            <a  href="/annual/">年度</a>
-                        </u>
+                        <a style="color: #4e7dde;" href="/annual/">年度</a>
                     
                 </i></li>
             
@@ -336,60 +169,36 @@
             
         
         <link rel="stylesheet" type="text/css" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/lightgallery.min.css" /><div class=".article-gallery"><style>
-  * {
-    box-sizing: border-box;
-  }
-
   #app {
-    padding: 0.4rem;
+    padding: 0;
   }
-
   .timeline {
     position: relative;
-    padding: 1rem;
+    padding: 1rem 2rem 20rem 0;
     margin: 0 auto;
-    max-width: 1300px;
-
     &:before {
       content: "";
       position: absolute;
       height: 100%;
       border: 1px solid skyblue;
-      right: 20px;
       top: 0;
-    }
-
-    &:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-
-    @media screen and (min-width: 700px) {
-      padding: 2rem;
-
-      &:before {
-        right: calc(50% - 1px);
-        left: auto;
-      }
+      right: 20px;
+      left: auto;
     }
   }
-
   .timeline__item {
     padding: 1rem;
     border: 2px solid skyblue;
     border-image: linear-gradient(to right, skyblue 0%, hotpink 100%);
     border-image-slice: 1;
     position: relative;
-    margin: 1rem 2rem 1rem 3rem;
     clear: both;
-
+    margin: 1rem;
     &:after,
     &:before {
       content: "";
       position: absolute;
     }
-
     &:before {
       right: -10px;
       top: calc(50% - 5px);
@@ -398,65 +207,22 @@
       border-width: 10px;
       transform: rotate(45deg);
     }
-
-    @media screen and (min-width: 700px) {
-      width: 44%;
-      margin: 1rem;
-      &:nth-of-type(2n) {
-        float: right;
-        margin: 1rem;
-        border-image: linear-gradient(to right, hotpink 0%, skyblue 100%);
-        border-image-slice: 1;
-
-        &:before {
-          right: auto;
-          left: -10px;
-          border-color: transparent transparent hotpink hotpink;
-        }
-      }
-    }
   }
-
   .timeline__item--year {
-    text-align: center;
     max-width: 150px;
     margin: 0 48px 0 auto;
-    background-color: #fff;
+    padding: 12px !important;
     line-height: 1;
-    border-image: none;
-    color: #000;
-
+    border:none;
     &:before {
       display: none;
-    }
-
-    @media screen and (min-width: 700px) {
-      text-align: center;
-      margin: 0 auto;
-
-      &:nth-of-type(2n) {
-        float: none;
-        margin: 0 auto;
-        border-image: none;
-
-        &:before {
-          display: none;
-        }
-      }
     }
   }
 </style>
 
 <div id="app">
   <div class="timeline">
-    <h3 class="timeline__item timeline__item--year">2023</h3>
-    <div class="timeline__item">
-      <ul style="margin: 0">
-        <li><del>📖搭建个人博客</del></li>
-        <li><del>📖编写社区App</del></li>
-      </ul>
-    </div>
-    <h3 class="timeline__item timeline__item--year">2024</h3>
+    <h3 class="timeline__item timeline__item--year">2024🔖</h3>
     <div class="timeline__item">
       <ul style="margin: 0">
         <li><del>📖阅读《亲密关系》</del></li>
@@ -465,10 +231,17 @@
         <li>📜学习 TypeScript</li>
       </ul>
     </div>
-    <h3 class="timeline__item timeline__item--year">未来</h3>
     <div class="timeline__item">
       <ul style="margin: 0">
         <li>🗺️摩托车旅行</li>
+        <li>☑️完成社区App</li>
+      </ul>
+    </div>
+    <h3 class="timeline__item timeline__item--year">2023</h3>
+    <div class="timeline__item">
+      <ul style="margin: 0">
+        <li><del>💻搭建个人博客</del></li>
+        <li><del>📱编写社区App</del></li>
       </ul>
     </div>
   </div>
