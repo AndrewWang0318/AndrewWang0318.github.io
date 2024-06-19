@@ -130,10 +130,6 @@
             
         
             
-                <li><a href="/about/">关于</a></li>
-            
-        
-            
                 <li><i>
                     
                         <a style="color: #4e7dde;" href="/annual/">年度</a>
@@ -143,6 +139,10 @@
         
             
                 <li><a href="/masonry/">相册</a></li>
+            
+        
+            
+                <li><a href="/about/">关于</a></li>
             
         
     </ul>
@@ -172,16 +172,21 @@
       }
       .timeline {
         position: relative;
-        padding: 1rem 2rem 20rem 0;
+        padding: 1rem 2rem 0 2rem;
         margin: 0 auto;
         &:before {
           content: "";
           position: absolute;
           height: 100%;
-          border: 1px solid skyblue;
+          border: 1px solid hotpink;
           top: 0;
           right: 20px;
           left: auto;
+        }
+        &:after {
+          content: "";
+          display: table;
+          clear: both;
         }
       }
       .timeline__item {
@@ -191,7 +196,7 @@
         border-image-slice: 1;
         position: relative;
         clear: both;
-        margin: 1rem;
+        margin: 1rem 3rem 1rem 1rem;
         &:after,
         &:before {
           content: "";
@@ -211,9 +216,43 @@
         margin: 0 48px 0 auto;
         padding: 12px !important;
         line-height: 1;
-        border: none;
+        background-color: #fff;
+        text-align: center;
         &:before {
           display: none;
+        }
+      }
+      .pc .timeline{
+        padding: 4rem 2rem 0 2rem;
+        &:before {
+          left: calc(50% - 1px);
+          right: auto;
+        }
+      }
+      .pc .timeline__item{
+        width: 44%;
+        margin: 1rem;
+        &:nth-of-type(4n) {
+          float: right;
+          margin: 1rem;
+          border-image: linear-gradient(to right, hotpink 0%, skyblue 100%);
+          border-image-slice: 1;
+          &:before {
+            right: auto;
+            left: -10px;
+            border-color: transparent transparent hotpink hotpink;
+          }
+        }
+      }
+      .pc .timeline__item--year{
+        margin: 0 auto;
+        text-align: center;
+        &:nth-of-type(2n) {
+          float: none;
+          margin: 0 auto;
+          &:before {
+            display: none;
+          }
         }
       }
     </style>
@@ -221,19 +260,20 @@
   <body>
     <div id="app">
       <div class="timeline">
-        <h3 class="timeline__item timeline__item--year">2024🔖</h3>
+        <h3 class="timeline__item timeline__item--year">Soon</h3>
+        <div class="timeline__item">
+          <ul style="margin: 0">
+            <li>🗺️摩托车旅行</li>
+            <li>☑️完成社区App</li>
+          </ul>
+        </div>
+        <h3 class="timeline__item timeline__item--year">2024</h3>
         <div class="timeline__item">
           <ul style="margin: 0">
             <li><del>📖阅读《亲密关系》</del></li>
             <li>📜学习《前端算法与数据结构》</li>
             <li>📜学习《JS设计模式核心原理》</li>
             <li>📜学习 TypeScript</li>
-          </ul>
-        </div>
-        <div class="timeline__item">
-          <ul style="margin: 0">
-            <li>🗺️摩托车旅行</li>
-            <li>☑️完成社区App</li>
           </ul>
         </div>
         <h3 class="timeline__item timeline__item--year">2023</h3>
@@ -243,16 +283,18 @@
             <li><del>📱编写社区App</del></li>
           </ul>
         </div>
+        <h3 class="timeline__item timeline__item--year">2022</h3>
       </div>
     </div>
     <script>
       function applyResponsiveStyles() {
         var content = document.querySelector("#app");
-        console.log(content)
         if (window.innerWidth < 750) {
-          // content.style.backgroundColor = "lightblue";
+          content.classList.remove("pc")
+          content.classList.add("mobile")
         } else {
-          // content.style.backgroundColor = "lightgreen";
+          content.classList.add("pc")
+          content.classList.remove("mobile")
         }
       }
       // 初次加载时应用样式
