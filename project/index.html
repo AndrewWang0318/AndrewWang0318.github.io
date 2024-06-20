@@ -166,49 +166,113 @@
         
         <link rel="stylesheet" type="text/css" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/lightgallery.min.css" /><div class=".article-gallery"><html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-      .post-md h6{
-        margin:0;
-        padding:0;
-      }
-      .column {
-        float: left;
-        width: 33.33%;
-        padding: 0 10px;
+      #app {
+        padding: 10px 8px;
         box-sizing: border-box;
       }
-      .item {
-        margin-bottom: 20px;
-        background-color: #f0f0f0;
-        padding: 20px;
-        border-radius: 5px;
-        font-size:2rem;
+      #app a{
+        text-decoration: none;
+      }
+      .card-list{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+        gap: 16px;
+      }
+      .card{
+        border-radius:6px;
+        overflow:hidden;
+        background-color:#eee;
+      }
+      .card > a{
+        width:100%;
+      }
+      .card:hover {
+      }
+      .card-image{
+        display: flex;
+        align-items: center;
+        width:100%;
+        height:385px;
+      }
+      .card-image > a{
+        display: block;
+        width: 100%;
+      }
+      .card-image img {
+        display: block;
+        /* width: 100%; */
+        max-height: 375px;
+        margin: 0 auto;
+      }
+      .card-description{
+        display: block;
+        padding: 16px;
+        box-sizing: border-box;
+        color: #515151;
+        text-align: center;
+        background-color:#fafafa;
+      }
+      .card-description .desc{
+        font-size:12px;
+      }
+      /* 针对手机设备（宽度小于等于 765px） */
+      @media (max-width: 750px) {
+        .card-list {
+          grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+        }
+      }
+      /* 针对平板设备（宽度在 766px 到 991px 之间） */
+      @media (min-width: 751px) and (max-width: 991px) {
+        .card-list {
+          grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+        }
       }
     </style>
   </head>
   <body>
     <div id="app">
-      <div class="column">
-        <!-- 第一列第一个项目 -->
-        <div class="item">
-          <a target="_blank" rel="noopener" href="https://github.com/AndrewWang0318/lighthouse">LIGHTHOSE</a>
+      <div class="card-list">
+        <div class="card">
+          <div class="card-image">
+            <a href="/img/project/lighthouse.jpg" class="gallery-item" style="box-shadow: none;"> <img src="/img/project/lighthouse.jpg" /></a>
+          </div>
+          <div class="card-description">
+            <div class="title"><a target="_blank" href="https://github.com/Kenute-Battalion/lighthouse">LIGHTHOSE</a></div>
+            <div class="desc">一款基于Vue3+Koa2的社区分享应用</div>
+          </div>
         </div>
-        <!-- 第一列第二个项目 -->
-        <!-- <div class="item"></div> -->
-      </div>
-      <div class="column">
-        <!-- 第二列第一个项目 -->
-        <div class="item"></div>
-      </div>
-      <div class="column">
-        <div class="item"></div>
+        <div class="card">
+          <div class="card-image">
+            <a href="/img/project/soon.jpg" class="gallery-item" style="box-shadow: none;"> <img src="/img/project/soon.jpg" /></a>
+          </div>
+          <div class="card-description">
+            <div class="title">Comming Soon</div>
+            <div class="desc">------------------------------</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <a href="/img/project/soon.jpg" class="gallery-item" style="box-shadow: none;"> <img src="/img/project/soon.jpg" /></a>
+          </div>
+          <div class="card-description">
+            <div class="title">Comming Soon</div>
+            <div class="desc">------------------------------</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <a href="/img/project/soon.jpg" class="gallery-item" style="box-shadow: none;"> <img src="/img/project/soon.jpg" /></a>
+          </div>
+          <div class="card-description">
+            <div class="title">Comming Soon</div>
+            <div class="desc">------------------------------</div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
-</html>
-</div><script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/lightgallery.min.js"></script><script>if("undefined"!=typeof lightGallery) {
+</html></div><script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/lightgallery.min.js"></script><script>if("undefined"!=typeof lightGallery) {
         var options1 = {
             selector: '.gallery-item'
         };
