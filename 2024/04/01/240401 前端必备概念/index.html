@@ -4,10 +4,10 @@
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <meta name="description" content="JS通用概念解释" />
-    <meta name="hexo-theme-A4" content="v1.8.9" />
+    <meta name="description" content="前端必备概念" />
+    <meta name="hexo-theme-A4" content="v1.9.0" />
     <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
-    <title>Andrew</title>
+    <title>Andrew&#39;s Home</title>
 
     
         
@@ -61,191 +61,26 @@
 
 <meta name="generator" content="Hexo 7.1.1"></head>
     
-    <style>
-        :root {
-            --waline-theme-color: #9e5345; 
-            --waline-color: #9e5345; 
-            --waline-border-color: #9e5345; 
-            --waline-white: #9e5345; 
-            --waline-bgcolor-light: #efeae2;  
-        }
-        body {
-            color: #9e5345;
-            background: #e8e0c9;
-        }
-        .post-md code {
-            background: #e8e0c9;
-            color: #2e5041; 
-        }
-        .post-md pre, .post-md .highlight {
-            background: #e8e0c9;
-            color: #2e5041; 
-        }
-        pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
-            color: #9e5345;
-        }
-        pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
-            color: #9e5345;
-        }
-        .year-font-color {
-            color: #9e5345 !important;
-        }
-        .wl-card span.wl-nick {
-            color: #9e5345; 
-        }
-        .wl-card .wl-badge {
-            border: 1px solid #9e5345;
-            color: #9e5345; 
-        }
-        .wl-btn {
-            border: 1px solid #9e5345; 
-            color:  #9e5345;  
-        }
-        .wl-btn.primary {
-            color: #efeae2; 
-        }
-        .wl-header label {
-            color: #9e5345;
-        }
-        a {
-            color: #2e5041;
-        }
-
-        .post-md a {
-            color: #2e5041;
-        }
-
-        .nav li a {
-            color: #2e5041;
-        }
-
-        .archive-main a:link {
-            color: #2e5041;
-        }
-        .archive-main a:visited {
-            color: #9c9caf; 
-        }
-
-        .archive li span {
-            color: #9e5345;
-        }
-
-        .post-main-title {
-            color: #9e5345;
-        }
-
-        .post-md h1,
-        .post-md h2,
-        .post-md h3,
-        .post-md h4,
-        .post-md h5,
-        .post-md h6 {
-            color: #9e5345;
-        }
-
-        [data-waline] p {
-            color: #9e5345;
-        }
-        [data-waline] a {
-            color: #9e5345;
-        } 
-        .wl-sort li.active {
-            color: #9e5345;
-        }
-
-        .wl-card .wl-meta>span {
-            background: #efeae2;
-        }
-
-        .paper {
-            background: #e8e0c9;
-        }
-
-        .index-main {
-            background: #efeae2;
-        }
-
-        .paper-main {
-            background: #efeae2;
-        }
-
-        .wl-panel {
-            background: #efeae2;
-        }
-
-        .archive li:nth-child(odd) {
-            background: #efeae2;
-            ;
-        }
-
-        .archive li:nth-child(even) {
-            background: #efeae2;
-        }
-
-        .post-md table tr:nth-child(odd) td {
-            background: #efeae2;
-        }
-
-        .post-md table tr:nth-child(even) td {
-            background: #efeae2;
-        }
-
-    
-        .progress-wrap::after {
-            color: #9e5345; /* 箭头的颜色 */
-        }
-        .progress-wrap svg.progress-circle path {
-	        stroke: #9e5345; /* 边框的颜色 */
-        }
-        .progress-wrap::before {
-	        background-image: linear-gradient(298deg, #2e5041, #2e5041); /* 鼠标滑过的箭头颜色 */
-         }
-
-        .return-to-last-progress-wrap::after {
-            color: #9e5345; /* 箭头的颜色 */
-        }
-        .return-to-last-progress-wrap svg.progress-circle path {
-	        stroke: #9e5345; /* 边框的颜色 */
-        }
-        .return-to-last-progress-wrap::before {
-	        background-image: linear-gradient(298deg, #2e5041, #2e5041); /* 鼠标滑过的箭头颜色 */
-         }
-
-         .left-toc-container::-webkit-scrollbar-thumb {
-            background-color: #9e5345; /* 设置滚动条拖动块的颜色 */
-        }
-
-        .bs-docs-sidebar .nav>.active>a,
-        .bs-docs-sidebar .nav>li>a:hover,
-        .bs-docs-sidebar .nav>li>a:focus {
-            color: #2e5041;
-            border-left-color: #2e5041;
-        }
-        .bs-docs-sidebar .nav>li>a {
-            color:  #9e5345;
-        }
-    </style>
-
     
     
     <body>
         <script src="/js/darkmode-js.min.js"></script>
         
         <script>
-            const options = {
+            const dkOptions = {
                 bottom: '53px', // default: '32px'
                 right: 'unset', // default: '32px'
                 left: '42px', // default: 'unset'
                 time: '0.3s', // default: '0.3s'
                 mixColor: '#fff', // default: '#fff'
-                backgroundColor: ' #e8e0c9  ',  // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
                 buttonColorDark: '#100f2c',  // default: '#100f2c'
                 buttonColorLight: '#fff', // default: '#fff'
                 saveInCookies: true, // default: true,
                 label: '🌓', // default: ''
                 autoMatchOsTheme: true // default: true
             }
-            const darkmode = new Darkmode(options);
+            const darkmode = new Darkmode(dkOptions);
             darkmode.showWidget();
         </script>
         
@@ -267,7 +102,7 @@
     <div class="header-container">
         <img style="
         width: 56px;
-        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        height: auto;border-radius: 6px;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/avatar.png" width="10%"></img>
         <div class="header-content">
             <a class="logo" href="/">Andrew</a> 
             <span class="description"></span> 
@@ -287,23 +122,23 @@
             
         
             
-                <li><a href="/tags/">标签</a></li>
-            
-        
-            
                 <li><a href="/categories/">分类</a></li>
             
         
             
-                <li><a href="/case/">案例</a></li>
+                <li><a href="/project/">作品</a></li>
             
         
             
-                <li><a href="/about/">关于</a></li>
+                <li><a href="/annual/">年度</a></li>
             
         
             
                 <li><a href="/masonry/">相册</a></li>
+            
+        
+            
+                <li><a href="/about/">关于</a></li>
             
         
     </ul>
@@ -321,7 +156,7 @@
 
     
         <div class="post-main-title">
-            JS通用概念解释
+            前端必备概念
         </div>
       
     
@@ -329,10 +164,10 @@
     <div class="post-md">
         
             
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JS%E9%80%9A%E7%94%A8%E6%A6%82%E5%BF%B5%E8%A7%A3%E9%87%8A"><span class="post-toc-text">JS通用概念解释</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E9%97%AD%E5%8C%85"><span class="post-toc-text">闭包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="post-toc-text">原型与原型链</span></a></li></ol></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%89%8D%E7%AB%AF%E5%BF%85%E5%A4%87%E6%A6%82%E5%BF%B5"><span class="post-toc-text">前端必备概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E9%97%AD%E5%8C%85"><span class="post-toc-text">闭包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="post-toc-text">原型与原型链</span></a></li></ol></li></ol>
             
         
-        <link rel="stylesheet" type="text/css" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="JS通用概念解释"><a href="#JS通用概念解释" class="headerlink" title="JS通用概念解释"></a>JS通用概念解释</h2><h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><ul>
+        <link rel="stylesheet" type="text/css" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="前端必备概念"><a href="#前端必备概念" class="headerlink" title="前端必备概念"></a>前端必备概念</h2><h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><ul>
 <li>概念：写一段自调用函数,函数体内声明变量后return出一个方法，方法内引用数据并处理，之后随着函数的调用结束定义的数据不会被而释放，第一次调用后的值被保存了下来，所以形成了”闭包”。原因是因为当声明一段函数时，它的作用域和变量就已经在内存中被声明了，因为js的垃圾处理机制是被引用的堆内存不会被释放。所以当变量被函数内部引用，函数执行完毕后作用域被销毁，但被引用的值不会被销毁，所以这些变量在闭包执行期间是永久性存在的</li>
 <li>用途：<ul>
 <li>保存状态：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这样并不会污染全局作用域,但是数据却可以拿到</span></span><br><span class="line"><span class="keyword">const</span> countNum = (<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    a += <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> a </span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"><span class="title function_">countNum</span>(); <span class="comment">// 1</span></span><br><span class="line"><span class="title function_">countNum</span>(); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure></li>
@@ -351,11 +186,11 @@
 </ul>
 </li>
 </ul>
-</div><script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
+</div><script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/lightgallery.min.js"></script><script>if("undefined"!=typeof lightGallery) {
+        var options1 = {
             selector: '.gallery-item'
         };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1);
         }</script>
     </div>
 
@@ -364,7 +199,7 @@
         
             <span>2024-04-01</span>
             
-                <span>该篇文章被 安德鲁</span>
+                <span>该篇文章被 Andrew</span>
             
             
                 <span>打上标签:
